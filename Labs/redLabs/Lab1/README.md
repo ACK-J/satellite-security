@@ -1,8 +1,7 @@
 # Lab 1 — The Intercept (Red-Team Signal & Protocol Ops)
 
-**Scenario** (surreal): Your team is hired to test the downlink resilience of a startup's CubeSat, **ODYSSEY-1**
+**Scenario**: Your team is hired to test the downlink resilience of a startup's CubeSat, **ODYSSEY-1**
 They claim the link is secure. You're given two *historical* baseband captures from a ground station test
-No RF transmission is permitted. Your ROE: offline analysis only; any “uplink” must be exercised **locally** via the provided gateway script
 
 > Goal: Intercept → Decode → Reverse → (Simulated) Command
 
@@ -19,19 +18,10 @@ No RF transmission is permitted. Your ROE: offline analysis only; any “uplink�
 - `tools/sat_gateway.py` — local validator for your crafted uplink packet
 - `assets/*.json` — samplerate + format metadata
 
-## Rules of Engagement (ROE)
-- **No RF transmission.** Work offline on the provided files
-- **No targeting real satellites or services.** This lab is a closed simulation
-- You may write your own tools/flows. Collaboration allowed, flag sharing not
-
-
 ## Hints
 - Symbol timing: a Mueller & Müller or Zero-Crossing clock recovery helps, but naive slicing works due to SNR
 - CRC: CRC‑16‑CCITT (X^16 + X^12 + X^5 + 1) of `[VER|SEQ|TYPE|LEN|PAY]` (no sync)
 - The second pass is noisier; improve your clock recovery or apply a matched filter
-
-## Safety
-Everything here is synthetic and self‑contained. No real‑world systems are involved. Do not transmit any RF signals
 
 ---
 
@@ -55,8 +45,4 @@ sudo apt/dnf instal gnuradio
    python3 tools/generate_captures.py
    ```
 
-## Minimal Demod Strategy (one way)
-- Quadrature demod to frequency → low‑pass → slice at symbol rate → map to bits
-- Search for sync by scanning for `0x1ACFFC1D` alignment in the bitstream
-- Reconstruct bytes, parse header, verify CRC, decode JSON
 
