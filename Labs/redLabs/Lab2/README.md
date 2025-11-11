@@ -9,6 +9,22 @@ You will:
 
 ---
 
+**Provided:**
+- **pass_clean.iq** (48 kS/s, complex float32) — synthetic BFSK downlink
+- **groundstation/** (Dockerized, intentionally weak):
+
+1. ``/`` dashboard (SSE live view)
+
+2. ``/stream`` SSE feed (no auth)
+
+3. ``/ingest`` telemetry ingest (no auth, no freshness checks)
+
+4. ``/login`` weak login (no lockout / rate limits)
+
+5. ``/cmd`` command endpoint (no auth, no rate limits, heavy compute per call)
+
+---
+
 ## Requirements
 **Having done** [Lab 1](../Lab1/TheInterceptLab.md)
 
