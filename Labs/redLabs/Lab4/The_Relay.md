@@ -277,23 +277,5 @@ python tools/replay.py --kiss nonce_then_auth.hex --host 127.0.0.1 --port 52001 
 ```
 **Why:** You’re now seeing how **challenge‑response** thwarts naive replay of stale captures.
 
----
 
-## (Optional) “Real RF” path (operator demo)
-
-If you already have a capture from gr‑satellites (KISS), drop it as `captures/yourpass.kiss` and replay that instead:
-
-```bash
-python tools/replay.py --kiss captures/yourpass.kiss --host 127.0.0.1 --port 52001 --pace 0.8
-```
-
-> Legal note: Only ingest captures you are authorized to handle. Never transmit. This lab is local-only.
-
----
-
-## Cleanup
-
-```bash
-deactivate || true
-```
 
