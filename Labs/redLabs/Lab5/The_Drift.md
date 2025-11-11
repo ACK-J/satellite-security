@@ -182,40 +182,6 @@ python emulators/antenna_controller_sim.py --pointing outputs/forged_pointing.cs
 
 ---
 
-## Red vs Blue Discussion
-
-- **Red Team:**  
-  - Insert small TLE changes via a poisoned catalog
-  - Bias them near AOS/LOS for maximum disruption
-  - Harder to detect than jamming — no noise, just *silence*
-
-- **Blue Team:**  
-  - Require signed ephemeris (PKI)
-  - Cross-check multiple providers (e.g., Celestrak vs internal)
-  - Put bounds on acceptable az/el/slew rates
-  - Monitor residuals: compare predicted vs measured Doppler
-
----
-
-## Extra Challenges
-
-- Change GS location in `config/gs.json` (Quito vs Berlin), does forgery error grow or shrink?  
-- Increase duration to 12 hours and see how divergence scales
-- Try forging inclination or eccentricity instead of mean motion
-- Simulate with narrower beamwidths: at what angular error do you “lose lock”?
-- And most importantly visualize the scripts and try to understand and make your own
-
----
-
-## Troubleshooting
-
-- **Docker missing:** install Docker/Podman. On Fedora: `sudo dnf install docker` then `sudo systemctl enable --now docker`.
-- **Plots don’t show:** ensure the venv is activated and `matplotlib` installed; on headless servers, use an interactive desktop or save plots by editing `visualize_pointing.py` to call `plt.savefig(...)`.
-- **Different site/time:** edit `config/gs.json`. Bigger windows yield more pronounced divergence.
-- **gpredict import issues:** either run `./install_in_gpredict.sh` or use *Manage satellites → New* and paste three lines from `assets/ODYSSEY-1_strict.tle`.
-
----
-
 ## Cleanup
 ```bash
 deactivate || true
