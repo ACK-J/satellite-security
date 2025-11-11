@@ -6,7 +6,7 @@
 
 ---
 
-## Environment setup
+## Setup
 
 Download the zip for this main folder from [Here](./lab-4-the-relay.zip)
 
