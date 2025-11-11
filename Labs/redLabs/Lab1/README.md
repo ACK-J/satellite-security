@@ -46,3 +46,5 @@ sudo apt/dnf instal gnuradio
    ```
 
 
+## When you are ready, proceed with the [The Intercepter Lab](./TheIntercepterLab.md)
+
