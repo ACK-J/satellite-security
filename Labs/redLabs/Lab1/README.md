@@ -18,11 +18,6 @@ They claim the link is secure. You're given two *historical* baseband captures f
 - `tools/sat_gateway.py` — local validator for your crafted uplink packet
 - `assets/*.json` — samplerate + format metadata
 
-## Hints
-- Symbol timing: a Mueller & Müller or Zero-Crossing clock recovery helps, but naive slicing works due to SNR
-- CRC: CRC‑16‑CCITT (X^16 + X^12 + X^5 + 1) of `[VER|SEQ|TYPE|LEN|PAY]` (no sync)
-- The second pass is noisier; improve your clock recovery or apply a matched filter
-
 ---
 
 ## Setup (Quick)
