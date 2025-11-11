@@ -95,6 +95,11 @@ for score, off, preview in candidates:
 
 - To save and exit do `Ctrl + x` and `y` and `Enter`
 
+- Run it with
+```bash
+python3 decodeScript.py
+```
+
 ### Part B — Replay Attack (Confuse Operators)
 - Start the **ground station**
 ```bash
