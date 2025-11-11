@@ -2,9 +2,7 @@
 
 **Scenario:** Show how an attacker can **record** valid satellite command traffic and **replay** it later to a naive groundstation that lacks freshness checks. You’ll plan a pass, review/parse captured frames, then replay them into a local vulnerable groundstation emulator and measure impact. Finally, you’ll turn on defenses and re-test.
 
-**You’ll practice:** pass planning (gpredict), KISS framing basics, safe replay, and blue-team mitigations (timestamps, nonces, dedup).
-
-> All assets here are **synthetic**. Replay is **only** sent to the **local emulator**. Do not transmit or send to real systems.
+**You’ll practice:** pass planning (gpredict), KISS framing basics, safe replay, and blue-team mitigations (timestamps, nonces, dedup)
 
 ---
 
