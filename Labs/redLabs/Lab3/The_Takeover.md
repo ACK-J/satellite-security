@@ -1,18 +1,32 @@
-# Lab — The Takeover
+# Lab 3 — The Takeover
 
-**Mission Briefing:**  
+
+**Mission:**  
 You’ve successfully intercepted ODYSSEY-1’s downlink. Inside the captured traffic, you spotted telemetry and even an ACK packet that contains a mysterious `auth` field
+
 Your task is to **reverse engineer the uplink authentication scheme, craft a forged control command, and trick the ground station into accepting it**
 
-> This lab is fully offline and safe. All signals and services are synthetic and run only on your machine
-
----
-
 ## Requirements
-- GNU Radio Companion (≥ 3.9)
-- Python 3.9+ with `numpy`
-- Docker + Docker Compose
-- curl + jq (optional for pretty JSON)
+Download the zip for this main folder from [Here](./Lab_Takeover_Kit_Full.zip)
+
+- Click the Download button
+
+<img width="330" height="177" alt="image" src="https://github.com/user-attachments/assets/df15f9ee-985a-4f6a-af65-32698e1aa337" />
+
+- Extract it
+
+## Provided
+- ``assets/takeover_pass.iq`` — synthetic downlink (48 kS/s cf32)
+- ``groundstation/`` — control app (verifies your forged uplink)
+- ``tools/craft_uplink_template.py`` — OPTIONAL helper
+
+Protocol recap (from Lab 1):
+- SYNC=0x1ACFFC1D
+- Frame: [SYNC(4)][VER(1)][SEQ(2)][TYPE(1)][LEN(2)][PAY(JSON)][CRC16(2)]
+- CRC16-CCITT over [VER..PAY]
+
+Auth rule (discover/confirm from pass): auth = sha1(str(epoch) + sat + "-BLUE")[:8]
+
 
 Check your tools:
 ```bash
@@ -22,15 +36,10 @@ docker --version
 docker compose version
 ```
 
----
-
-## Provided Files
-- `assets/takeover_pass.iq` — synthetic downlink capture (48 kS/s cf32)
-- `groundstation/` — control app (Dockerized, verifies your forged uplink)
-- `tools/craft_uplink_template.py` — optional helper script to build an uplink
 
 ---
 
+# Start
 ## Part A — Decode the Downlink
 
 1. **Open GNU Radio Companion (GRC)** and take the flow from [Lab 1](../Lab1/TheIntercepterLab.md) or build this flow:
