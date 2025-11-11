@@ -1,7 +1,3 @@
-**Scenario:** You’re red team 
-
-Your job is to degrade the downlink, confuse operators, and lock them out — using only local, safe components
-
 **Provided:**
 - **pass_clean.iq** (48 kS/s, complex float32) — synthetic BFSK downlink
 - **groundstation/** (Dockerized, intentionally weak):
