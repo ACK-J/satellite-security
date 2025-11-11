@@ -31,3 +31,5 @@ Make sure you have these installed:
 - **curl** (for HTTP attacks)  
 - **xargs**, **seq**, **watch**, and optionally **jq** (all standard on most Linux distros; `jq` is useful for JSON pretty-printing)
 
+
+## When you are ready, proceed with the [Lab](./TheDenialLab.md)
