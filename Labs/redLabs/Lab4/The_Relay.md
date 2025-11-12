@@ -1,3 +1,5 @@
+![image](https://github.com/user-attachments/assets/068fae26-6e8f-402f-ad69-63a4e6a1f59e)
+
 # Lab 4 - The Relay
 
 **Scenario:** Show how an attacker can **record** valid satellite command traffic and **replay** it later to a naive groundstation that lacks freshness checks. You’ll plan a pass, review/parse captured frames, then replay them into a local vulnerable groundstation emulator and measure impact. Finally, you’ll turn on defenses and re-test.
@@ -6,9 +8,9 @@
 
 ---
 
-## Setup
+## Setup 
 
-Download the zip for this main folder from [Here](./lab-4-the-relay.zip)
+Download the zip for this main folder from [Here](./lab-4-the-relay.zip) ( Only if you are not using the VM )
 
 - Click the Download button
 
@@ -19,29 +21,26 @@ Download the zip for this main folder from [Here](./lab-4-the-relay.zip)
 
 ```bash
 # enter the lab folder
-cd lab-4-the-relay
+cd Lab4
+```
 
+```bash
 # Python virtual env for reproducibility
 python3 -m venv .venv
+```
 
+```bash
 # activate it
 source .venv/bin/activate
+```
 
+```bash
 # upgrade pip and install our few dependencies
 pip install --upgrade pip
 pip install pycrc
 ```
 
 **Why:** The emulator and helpers are plain Python, `pycrc` is only used in one optional check
-
-Optional GUI tools (for the “real RF” branch):
-```bash
-# gpredict is used for pass planning; install if you want the GUI
-sudo apt-get update && sudo apt-get install -y gpredict
-
-# If you already use SatNOGS / gr-satellites, you’re set
-# This lab does NOT require them, we ship a synthetic capture
-```
 
 Find the documentation for [gpredict here](/Tools%20and%20Frameworks/gpredict.md)
 
@@ -104,6 +103,13 @@ In gpredict:
 Open and parse the KISS frames we provide
 
 This simulates “post‑demod” packets an attacker or operator might export
+
+>[!IMPORTANT]
+>Make sure you are at `~/Desktop/Lab4/`
+
+```bash
+cd ~/Desktop/Lab4
+```
 
 ```bash
 # Show frames and parsed fields
