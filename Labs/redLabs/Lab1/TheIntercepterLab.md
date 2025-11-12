@@ -1,3 +1,6 @@
+![image](https://github.com/user-attachments/assets/068fae26-6e8f-402f-ad69-63a4e6a1f59e)
+
+
 # Lab 1 — The Intercept
 
 **Scenario**: Your team is hired to test the downlink resilience of a startup's CubeSat, **ODYSSEY-1**
@@ -168,9 +171,13 @@ gnuradio-companion &
 
 - Now let it Run for 5-10 seconds then stop
 
-- In the assets folder, run
 ```bash
-xxd -d pass_01_BPF.txt
+cd ~/Desktop/Lab1
+```
+
+- Run
+```bash
+xxd -d assets/pass_01_BPF.txt
 ```
 
 - You should see information flowing out
@@ -190,6 +197,13 @@ xxd -d pass_01_BPF.txt
 - We get an **ACK** response with out second flag: **FLAG2{protocol_reversed}**
 
 - For the final flag, we will build this payload script using the information from ``pass_01.iq`` and save it as ``uplink_craft.py`` in the main directory
+
+```bash
+nano uplink_craft.py
+```
+
+- Copy-Paste is your friend
+
 ```bash
 import json, struct, hashlib, binascii
 SYNC=0x1ACFFC1D
@@ -211,6 +225,7 @@ open('uplink.bin','wb').write(uplink)
 print("uplink.bin written")
 ```
 
+- To save and exit do `Ctrl + x` and `y` and `Enter`
 
 - Run it
 
