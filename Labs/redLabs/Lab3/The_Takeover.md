@@ -72,7 +72,11 @@ Just replace the ``File Source`` block and the `File Sink` blocks with our new `
 5. View `takeover_pass_BPF.txt`
 
 ```bash
-xxd -g1 takeover_pass_BPF.txt
+cd ~/Desktop/Lab3
+```
+
+```bash
+xxd -g1 assets/takeover_pass_BPF.txt
 ```
 
 <img width="793" height="1019" alt="image" src="https://github.com/user-attachments/assets/82d07b1b-57d5-4981-80a0-b71c6f68362a" />
@@ -155,15 +159,3 @@ xxd -g1 takeover_pass_BPF.txt
 
 4. Check the dashboard (`/` endpoint) — it should now display your new mode and auth tag
 
----
-
-## Troubleshooting
-- **bad sync / bad crc** → CRC should exclude SYNC, cover `[VER..PAYLOAD]`
-- **wrong type** → `ptype` must be `0x03`
-- **bad auth** → recompute SHA‑1 using telemetry `epoch` + `sat` + `"-BLUE"`
-- **no response** → ensure Docker container is running and `http://localhost:5000` is reachable
-
----
-
-## Safety Note
-This is a **training simulation**. Never attempt to attack real satellites or ground stations
