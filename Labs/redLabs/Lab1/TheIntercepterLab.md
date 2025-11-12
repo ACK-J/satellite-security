@@ -20,13 +20,9 @@ They claim the link is secure. You're given two *historical* baseband captures f
 
 ---
 
-## Setup (Quick)
-1. Install [GNU Radio](/Tools%20and%20Frameworks/GNU_radio.md) (>= 3.9)
-```bash
-sudo apt/dnf instal gnuradio
-```
+## Setup ( Only if you are not using the VM )
 
-2. Download the zip for this main folder from [Here](./TheIntercepterLab.zip)
+1. Download the zip for this main folder from [Here](./Lab1.zip)
 
 - Click the Download button
 
@@ -35,7 +31,7 @@ sudo apt/dnf instal gnuradio
 
 - Extract it
 
-3. Optional: Regenerate captures
+2. Optional: Regenerate captures
    ```bash
    python3 tools/generate_captures.py
    ```
