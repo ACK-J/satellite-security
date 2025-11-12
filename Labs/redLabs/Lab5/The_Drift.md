@@ -123,6 +123,9 @@ Open and edit `config/gs.json` if desired:
 
 **Why:** Orbit prediction always depends on **where** you observe from and **when**
 
+>[!IMPORTANT]
+>Make sure you are in the `Lab5` directory under `~/Desktop/Lab5`
+
 ### Build the Orekit container
 ```bash
 sudo docker build -t orekit-drift -f docker/Dockerfile .
@@ -144,8 +147,6 @@ sudo docker run --rm -v "$(pwd):/work:Z" orekit-drift   python3 scripts/run_anal
 
 **Why:** In real ops, this forgery could be delivered by a compromised catalog or MITM attack, operators would then mis-point antennas
 
->[!IMPORTANT]
->Make sure you are in the `Lab5` directory under `~/Desktop/Lab5`
 
 Quick peek:
 ```bash
