@@ -79,7 +79,7 @@ gnuradio-companion &
 
 <img width="548" height="447" alt="image" src="https://github.com/user-attachments/assets/ef271371-dce1-42e7-a949-cb485108d97c" />
 
-- Double click the ``samp_rate`` variable and edit it to **48000**
+- Double click the ``samp_rate`` variable and edit the **Value** to **48000**, then again press **Apply** and **Ok**, as we do with every block when we edit it
 
 <img width="109" height="86" alt="image" src="https://github.com/user-attachments/assets/39e8e7cf-ff0f-437f-bcec-d22e98b82a1c" />
 
