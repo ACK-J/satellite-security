@@ -128,7 +128,7 @@ gnuradio-companion &
 
 - Add a ``Low Pass Filter`` and connect it to the ``Quadrature Demod``, it removes high-frequency noise so the clock recovery locks faster
 
-<img width="550" height="446" alt="image" src="https://github.com/user-attachments/assets/b224ff60-3022-43b3-a568-226070ee80db" />
+<img width="603" height="539" alt="image" src="https://github.com/user-attachments/assets/1605b263-c539-439f-902a-82ccc945d6e5" />
 
 - Add a ``QT GUI Time Sink`` and connect it to the ``Low Pass Filter`` and set it to **float**, the run it again by pressing ``F6`` to visualize this
 
