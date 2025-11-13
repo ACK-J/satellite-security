@@ -143,7 +143,7 @@ gnuradio-companion &
 
 - Add a ``Clock Recovery MM`` and connect it to the ``Low Pass Filter``, our float stream is oversampled at 48 kS/s. This block finds the optimal sample per symbol every 40 samples to align to bit boundaries
 
-<img width="546" height="448" alt="image" src="https://github.com/user-attachments/assets/3fa5ac75-b710-4660-80bd-531121f93ae3" />
+<img width="602" height="536" alt="image" src="https://github.com/user-attachments/assets/3bd1d575-b145-4e39-91dc-a80607990b4e" />
 
 - Add a ``Binary Slicer`` and connect it to the ``Clock Recovery MM`` and then a ``UChar To Float`` and connect it to the ``Binary Slicer``, the binary slicer converts each symbol into a byte 0x00 or 0x01
 
