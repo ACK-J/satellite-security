@@ -89,7 +89,16 @@ gnuradio-companion &
 
 <img width="681" height="180" alt="image" src="https://github.com/user-attachments/assets/57383e01-09d2-420d-aad2-fa8df8cf9527" />
 
-- Run the flow by pressing ``F6``, you’re looking at raw baseband. Two energy blobs near ±2 kHz = 2-FSK
+- Double click the `Options` block on the top-left, in the **Id** field write **Lab1**, and under **Generate Options** select **QT GUI**
+
+<img width="598" height="533" alt="image" src="https://github.com/user-attachments/assets/d37cf9ce-5ab0-42fc-b9f2-f0d10c1eb968" />
+
+
+- Run the flow by pressing ``F6``, you will be prompted to save the file, let's save it with the name **Lab1_GNU.grc** on **Desktop**
+
+<img width="828" height="50" alt="image" src="https://github.com/user-attachments/assets/4c5d6795-700a-44c0-b0a5-73c4673fca6f" />
+
+- You’re looking at raw baseband. Two energy blobs near ±2 kHz = 2-FSK
 
 <img width="410" height="374" alt="image" src="https://github.com/user-attachments/assets/bde68567-0911-4910-8942-106f2afbcd20" />
 
