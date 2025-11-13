@@ -61,7 +61,6 @@ rq> rx start
 ```
 You should now see beacons every ~2s
 
-**Deliverable A:** Mark which bytes are SAT, MODE, SEQ, CMD on one beacon
 **Why:** You always need structure before attacks
 
 ---
@@ -74,7 +73,6 @@ rq> packet_filter add ^AAAA5555A1
 rq> packet_filter list
 ```
 
-**Deliverable B:** Your regex + one filtered hex frame
 **Why:** Mirrors RFQuack’s packet filter to kill noise
 
 ---
@@ -90,7 +88,6 @@ rq> send <paste the 16-byte hex>
 ```
 
 **Expected:** Emulator toggles state and prints an ACK-style line
-**Deliverable C:** What changed, and the hex you replayed
 **Why:** CRC isn’t auth; replay still lands
 
 ---
@@ -104,7 +101,6 @@ rq> repeater on
 rq> rx start
 ```
 
-**Deliverable D:** Original vs forwarded hex (MODE byte diff) + emulator state change
 **Why:** On-path attackers can silently change command meaning
 
 ---
@@ -118,7 +114,6 @@ rq> send <previously accepted cmd hex>
 ```
 Try other deltas if needed
 
-**Deliverable E:** Your bypass method + attempts until accepted
 **Why:** Freshness needs nonces/challenges, not bare counters
 
 ---
@@ -132,17 +127,7 @@ rq> jam start --duty 0.6
 rq> jam stop
 ```
 
-**Deliverable F:** Observed loss window + recovery
 **Why:** Even short narrow interference disrupts C2
-
----
-
-## 7) Defend it
-
-Propose **three** mitigations and tie each to an attack:
-- Authenticate frames (e.g., HMAC over MODE|SEQ|CMD)
-- Challenge/nonce instead of bare SEQ
-- FHSS + Listen-Before-Talk to blunt jamming
 
 ---
 
