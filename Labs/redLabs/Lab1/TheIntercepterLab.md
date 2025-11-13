@@ -194,7 +194,8 @@ cat ~/Desktop/Lab1/assets/pass_01.bits
 
 - Add a ``Tagged Stream Align`` and connect it to the ``Correlate Access Code - Tag``
 
-<img width="551" height="451" alt="image" src="https://github.com/user-attachments/assets/7bddfa66-0200-4836-a1e3-b03b2a185136" />
+<img width="596" height="534" alt="image" src="https://github.com/user-attachments/assets/78058138-a319-4133-b238-fe13053b146b" />
+
 
 - Add  a ``Repack Bits`` and connect it to the ``Tagged Stream Align``
 
