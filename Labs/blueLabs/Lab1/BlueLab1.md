@@ -13,28 +13,6 @@ In this lab you will:
 2. Use **Wireshark** to understand the replay and HTTP floods  
 3. Use **Docker**, **Nginx**, **Fail2ban**, and **Suricata** to harden and monitor the groundstation
 
----
-
-## Requirements
-
-On your VM (or host), have installed:
-
-- **Gqrx** or **SDRangel** or **CubicSDR**
-- **Inspectrum**
-- **GNU Radio Companion (GRC)**
-- **Wireshark**
-- **Docker + docker compose**
-- **Nginx**
-- **Fail2ban**
-- **Suricata**
-
-Example install:
-
-```bash
-sudo apt update
-sudo apt install gqrx-sdr inspectrum wireshark nginx fail2ban suricata
-```
-
 You already have:
 - `pass_clean.iq`
 - `pass_jam_0dB.iq`
@@ -45,13 +23,18 @@ You already have:
 
 # Part A — RF: Visually Detect & Understand the Jamming
 
-## A1 — Compare clean vs jammed signals in Gqrx
+## Compare clean vs jammed signals in Gqrx
 
-1. Open **Gqrx**.
-2. Select **I/Q File Source** mode.
+1. Open **Gqrx**, run
+
+```bash
+gqrx
+```
+
+2. Select **I/Q File Source** mode
 3. Sample rate: **48000**
 4. Load: `pass_clean.iq`
-5. Observe clean BFSK tones.
+5. Observe clean BFSK tones
 
 Then repeat for:
 - `pass_jam_0dB.iq`
@@ -62,21 +45,17 @@ Watch for:
 - Smeared tones  
 - Loss of clarity in waterfall  
 
----
+## Inspect symbols in Inspectrum
 
-## A2 — Inspect symbols in Inspectrum
-
-1. Start **Inspectrum**.
+1. Start **Inspectrum**
 2. Load `pass_clean.iq`
 3. Set sample rate: **48000**
-4. Zoom in until symbol timing is visible.
-5. Use *symbol period markers* to estimate symbol rate.
+4. Zoom in until symbol timing is visible
+5. Use *symbol period markers* to estimate symbol rate
 
 Repeat for jammed files; observe corruption of symbol structure.
 
----
-
-## A3 — Verify demodulator failure in GNU Radio Companion
+## Verify demodulator failure in GNU Radio Companion
 
 1. Load your Lab1/2 flowgraph.
 2. Set File Source → `pass_clean.iq`
@@ -272,7 +251,3 @@ Send a normal `/cmd` request to observe latency changes:
 curl -s -H "Content-Type: application/json" \
      --data '{"mode":"SAFE"}' http://localhost/cmd
 ```
-
----
-
-# End of Blue Lab 1
