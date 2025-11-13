@@ -54,7 +54,7 @@ gnuradio-companion &
 
 <img width="1920" height="1167" alt="image" src="https://github.com/user-attachments/assets/2ddbdd2b-51b3-4eb5-b4c4-4595666f81fa" />
 
-- First things first let's input our file, that's under ``/Lab1_The_Intercept_Starter_Kit/assets/pass_01.iq``
+- First things first let's input our file, that's under ``~/Desktop/Lab1/assets/pass_01.iq``
 
 - To add nodes to the flow press ``Ctrl + f`` to open the search bar on the right
 
@@ -64,7 +64,7 @@ gnuradio-companion &
 
 <img width="128" height="157" alt="image" src="https://github.com/user-attachments/assets/6b0cc087-9a43-451d-a7a6-c1de4c605532" />
 
-- Double click it and at ``File`` put the path to the ``/Lab1_The_Intercept_Starter_Kit/assets/pass_01.iq`` and the rest like in the image, then press **Apply** and **Ok**
+- Double click it and at ``File`` put the path to the ``~/Desktop/Lab1/assets/pass_01.iq`` and the rest like in the image, then press **Apply** and **Ok**
 
 <img width="551" height="447" alt="image" src="https://github.com/user-attachments/assets/97b85f7a-eeb0-4080-afb7-9856cb07c26d" />
 
@@ -132,7 +132,7 @@ gnuradio-companion &
 
 <img width="548" height="446" alt="image" src="https://github.com/user-attachments/assets/04c7411c-e85a-4f65-affe-e63b2b5e6315" />
 
-- Add a ``File Sink`` and connect it to the ``Add Const``, save the file into ``/assets/pass_01.bits``
+- Add a ``File Sink`` and connect it to the ``Add Const``, save the file into ``~/Desktop/Lab1/assets/pass_01.bits``
 
 <img width="548" height="446" alt="image" src="https://github.com/user-attachments/assets/ee1ac11c-499e-4551-94f1-08c95b287eac" />
 
@@ -161,7 +161,7 @@ gnuradio-companion &
 
 <img width="551" height="451" alt="image" src="https://github.com/user-attachments/assets/78540910-1542-4d52-a126-7e4b8e59b54b" />
 
-- Add a ``File Sink`` and connect it to the ``Repack Bits``, save it into ``/assets/pass_01_BPF.txt``
+- Add a ``File Sink`` and connect it to the ``Repack Bits``, save it into ``~/Desktop/Lab1/assets/pass_01_BPF.txt``
 
 <img width="549" height="445" alt="image" src="https://github.com/user-attachments/assets/712099df-7632-4d1e-8fe8-62ad97df21f7" />
 
