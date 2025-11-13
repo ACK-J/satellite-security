@@ -151,13 +151,13 @@ gnuradio-companion &
 
 <img width="602" height="536" alt="image" src="https://github.com/user-attachments/assets/8fb45293-404b-4a67-bdc0-503e526fe79a" />
 
-- Run again with ``F6`` to see what we got
-
-<img width="661" height="837" alt="image" src="https://github.com/user-attachments/assets/7e95abf6-2a76-47b2-a2b8-9f1348836043" />
-
 <br>
 
 <img width="1094" height="527" alt="image" src="https://github.com/user-attachments/assets/012f2ea2-ba62-467d-9356-d7209617585a" />
+
+- Run again with ``F6`` to see what we got
+
+<img width="661" height="837" alt="image" src="https://github.com/user-attachments/assets/7e95abf6-2a76-47b2-a2b8-9f1348836043" />
 
 - Add a ``Add Const`` and connect it to the ``Binary Slicer``, we will add 48 to convert it to **ASCII**
 
