@@ -195,26 +195,41 @@ inspectrum &
 
 ```bash
 cd groundstation
-sudo docker compose up
 ```
 
-2. Open browser → `http://localhost:5000`
-3. Open **Wireshark**, capture on `lo` or `docker0`.
-4. Filter:
-
-```
-http
+```bash
+sudo docker compose up --build
 ```
 
-Observe:
-- `/stream` SSE  
-- Normal telemetry POSTs  
+2. Open browser -> `http://localhost:5000`
+
+<img width="889" height="420" alt="image" src="https://github.com/user-attachments/assets/cceaeb7b-2a3f-4692-9d57-5b835dfd290b" />
+
+3. Open a new terminal by pressing the button on the **Top-Left** of your already open **terminal** and open **Wireshark**
+
+<img width="99" height="55" alt="image" src="https://github.com/user-attachments/assets/c1fef67e-bba5-4a00-b6a0-9c9bb3c3cf44" />
+
+```bash
+sudo wireshark &
+```
+
+4. Capture on `Loopback: lo`
+
+<img width="771" height="140" alt="image" src="https://github.com/user-attachments/assets/604cf65c-0531-4771-9535-c97ee5b576ad" />
+
+- Double **Click** on that
+
+- Click any bigger **packet**
+
+<img width="1024" height="292" alt="image" src="https://github.com/user-attachments/assets/b5bdc6f8-6b63-4f6e-8780-8349e7031082" />
+
+<img width="558" height="204" alt="image" src="https://github.com/user-attachments/assets/bd98e5ee-d448-4e1a-b1e3-17911da2291f" />
 
 ---
 
 ## B2 — Watch replay attack in Wireshark
 
-1. Trigger replay (from red lab):
+1. Trigger replay (from a terminal):
 
 ```bash
 seq 1 500 | xargs -I{} -P 20 sh -c \
@@ -224,25 +239,16 @@ seq 1 500 | xargs -I{} -P 20 sh -c \
 ```
 
 2. In Wireshark:
+   - Apply filter with `Ctrl + /` and paste this: `frame contains "ingest"`
    - See many POSTs to `/ingest`
-   - Follow TCP stream
-   - Observe identical JSON bodies (`epoch`, `counter` repeated)
 
-3. IO Graphs → identify spike in rate.
+<img width="1042" height="341" alt="image" src="https://github.com/user-attachments/assets/a4833513-8ca5-407b-bf4c-0ab41da44e4a" />
 
----
 
-## B3 — Optional: Inspect `/ingest` & `/login` with Burp Suite
+3. On the top part of your window, go to **Statistics** -> **IO Graphs** -> **identify spike in rate**
 
-1. Open Burp.
-2. Set browser proxy to `127.0.0.1:8080`.
-3. Interact with:
+<img width="536" height="416" alt="image" src="https://github.com/user-attachments/assets/e4c9e6e3-ebd4-4bda-b918-79b8372d27e0" />
 
-- `/login`
-- `/ingest`
-- `/cmd`
-
-4. Replay `/ingest` via Burp Repeater — observe acceptance of identical stale telemetry.
 
 ---
 
