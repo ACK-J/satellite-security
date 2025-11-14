@@ -54,11 +54,12 @@ Download the zip for this main folder from [Here](./Lab2.zip)
 
 <br>
 
-<img width="549" height="184" alt="image" src="https://github.com/user-attachments/assets/107d0218-c091-4710-b9a1-e1cc2e42bb9e" />
+<img width="598" height="535" alt="image" src="https://github.com/user-attachments/assets/f683fffc-2fc8-48bd-91e0-ca65aec144af" />
 
 <br>
 
-<img width="549" height="184" alt="image" src="https://github.com/user-attachments/assets/dbd7bbfb-b44e-40c0-9025-de39e0cc5d0a" />
+<img width="598" height="535" alt="image" src="https://github.com/user-attachments/assets/9b43fef9-8ceb-4874-900c-1246da11c7f5" />
+
 
 ```bash
 cd ~/Desktop/Lab2
