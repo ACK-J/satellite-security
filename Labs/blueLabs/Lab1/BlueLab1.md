@@ -13,7 +13,7 @@ In this lab you will:
 2. Use **Wireshark** to understand the replay and HTTP floods  
 3. Use **Docker**, **Nginx**, **Fail2ban**, and **Suricata** to harden and monitor the groundstation
 
-You already have:
+You already have under `~/Desktop/BlueLab`(the files from **Lab2**):
 - `pass_clean.iq`
 - `pass_jam_0dB.iq`
 - `pass_jam_-5dB.iq`
@@ -28,15 +28,39 @@ You already have:
 1. Open **Gqrx**, run
 
 ```bash
-gqrx
+gqrx &
 ```
 
-2. Select **I/Q File Source** mode
-3. Sample rate: **48000**
-4. Load: `pass_clean.iq`
+- Get the path of the files:
+
+```bash
+realpath pass_clean.iq
+# /home/satuser/Desktop/BlueLab/pass_clean.iq
+```
+
+```bash
+satuser@satvm:~/Desktop/BlueLab$ realpath pass_jam_0dB.iq 
+# /home/satuser/Desktop/BlueLab/pass_jam_0dB.iq
+```
+
+```bash
+satuser@satvm:~/Desktop/BlueLab$ realpath pass_jam_-5dB.iq 
+# /home/satuser/Desktop/BlueLab/pass_jam_-5dB.iq
+```
+
+
+2. Select **Complex Sampled (IQ) File** Device
+3. Input rate: **48000**
+4. Device string: `file=/home/satuser/Desktop/BlueLab/pass_clean.iq,freq=437.5e6,rate=48000,repeat=true,throttle=true`
 5. Observe clean BFSK tones
 
-Then repeat for:
+<img width="738" height="687" alt="image" src="https://github.com/user-attachments/assets/02486823-47e6-48ff-a6d0-16189bf05595" />
+
+
+<img width="866" height="513" alt="image" src="https://github.com/user-attachments/assets/b163115f-ba48-46c5-b11f-7eff47539484" />
+
+
+Then repeat for (by replacing `pass_clean.iq` in the **Device string**:
 - `pass_jam_0dB.iq`
 - `pass_jam_-5dB.iq`
 
