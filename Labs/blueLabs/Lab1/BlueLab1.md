@@ -79,6 +79,52 @@ Watch for:
 
 <img width="738" height="684" alt="image" src="https://github.com/user-attachments/assets/408cace7-d781-4662-9374-61cc3ba4158a" />
 
+# Clean Signal — Analysis
+
+## Observations
+- Two strong vertical stripes indicating clear BFSK tones.
+- Noise floor is low, roughly –110 to –100 dBFS.
+- Signal stands well above the noise, giving high SNR.
+- Waterfall is stable and organized.
+- Symbol transitions look sharp and well-defined.
+
+## Interpretation
+- This is a healthy downlink.
+- The demodulator will lock easily and decode reliably.
+- Represents normal, expected operational conditions.
+
+
+# Jammed Signal (0 dB) — Analysis
+
+## Observations
+- BFSK tones are still visible but partially submerged.
+- Noise floor is raised significantly, around –90 to –80 dBFS.
+- Waterfall shows extra broadband noise.
+- Tone edges are less distinct.
+- SNR is reduced but not destroyed.
+
+## Interpretation
+- This is a partial denial situation.
+- Demodulator may still decode some packets but with higher BER.
+- Operators would see intermittent or glitchy telemetry.
+- Packet loss is likely but not total.
+
+
+# Jammed Signal (–5 dB) — Analysis
+
+## Observations
+- Noise floor is almost equal to or above the signal.
+- BFSK tones are faint and hard to distinguish.
+- Waterfall is nearly uniformly bright, indicating strong wideband jamming.
+- Symbol structure is buried in noise.
+- Effective SNR is below 0 dB.
+
+## Interpretation
+- This is a total denial scenario.
+- Demodulator will not lock or decode correctly.
+- Operators would experience complete loss of telemetry.
+- Groundstation would show stale or missing frames.
+
 
 ## Inspect symbols in Inspectrum
 
