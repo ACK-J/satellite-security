@@ -6,4 +6,4 @@ For Tools and Frameworks, [please click here!](/Tools%20and%20Frameworks/)
 
 For other Informations and Documentations, [please click here!](/Informations%20and%20Documentations/)
 
-For Labs, [please click here!](/Labs/)
+For Labs, [please click here!](/navigation.md)
