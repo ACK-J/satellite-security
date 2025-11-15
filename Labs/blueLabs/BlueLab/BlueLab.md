@@ -1,3 +1,4 @@
+![image](https://github.com/user-attachments/assets/068fae26-6e8f-402f-ad69-63a4e6a1f59e)
 
 # Blue Lab 1 — Defending ODYSSEY-1: RF & Groundstation Defense
 
@@ -344,3 +345,17 @@ sudo head -n 20 /var/log/nginx/error.log
 
 <img width="1690" height="332" alt="image" src="https://github.com/user-attachments/assets/220369d3-9129-463f-9906-383a6fedd0da" />
 
+
+***                                                                 
+
+<b><i>Want to go back? </br>[Previous Lab](/Labs/redLabs/Lab5/The_Drift.md)</i></b>
+
+<b><i>Looking for a different lab? </br>[Lab Directory](/navigation.md)</i></b>
+
+***Finished with the Labs?***
+
+Please be sure to destroy the lab environment!
+
+[Click here for instructions on how to destroy the Lab Environment](/labdestruction.md)
+
+---
