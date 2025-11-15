@@ -162,3 +162,19 @@ xxd -g1 assets/takeover_pass_BPF.txt
 
 4. Check the dashboard (`/` endpoint) — it should now display your new mode and auth tag
 
+
+
+***                                                                 
+<b><i>Continuing the course? </br>[Next Lab](/Labs/redLabs/Lab4/The_Relay.md)</i></b>
+
+<b><i>Want to go back? </br>[Previous Lab](/Labs/redLabs/Lab2/TheDenialLab.md)</i></b>
+
+<b><i>Looking for a different lab? </br>[Lab Directory](/navigation.md)</i></b>
+
+***Finished with the Labs?***
+
+Please be sure to destroy the lab environment!
+
+[Click here for instructions on how to destroy the Lab Environment](/labdestruction.md)
+
+---
