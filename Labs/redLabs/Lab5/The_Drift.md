@@ -182,12 +182,17 @@ You’ll see three windows:
 ### Create your own forged TLE (explicit file)
 ```bash
 python scripts/forge_tle.py   --in assets/ODYSSEY-1.tle   --out assets/ODYSSEY-1-forged.tle   --dn 5e-4   --draan 0.05
+```
 
-# Re-run analysis without inline offsets:
+- Re-run analysis without inline offsets:
+```bash
 sudo docker run --rm -v "$(pwd):/work:Z" orekit-drift   python3 scripts/run_analysis.py   --tle assets/ODYSSEY-1-forged.tle   --gs config/gs.json   --forge-offsets ""   --out outputs
+```
 
+```bash
 python scripts/visualize_pointing.py --out outputs
 ```
+
 **Why:** Makes the columnar edits in line‑2 tangible; students see precisely how a tiny change impacts pointing
 
 ### Antenna controller simulator
