@@ -225,7 +225,9 @@ Send a nonce request (a special synthetic command we added) and then AUTH with t
 ```bash
 # Generate a fresh AUTH sequence using helper (writes to temp file)
 python tools/packet_tools.py --show assets/captured_kiss.hex  # (just to remind format)
+```
 
+```bash
 # Use the prebuilt nonce+auth demo:
 python - <<'PY'
 from tools.packet_tools import FEND,FESC,TFEND,TFESC,parse_payload,unkiss
@@ -251,7 +253,10 @@ open("nonce_then_auth.hex","w").write(build("CHALLENGE?").hex()+"
 print("Now run emulator; check nonce at http://127.0.0.1:8000/status and edit the next line.")
 PY
 ```
-Visit `http://127.0.0.1:8000/status`, copy the `nonce` value, then craft AUTH:
+
+
+- Visit `http://127.0.0.1:8000/status`, copy the `nonce` value, then craft AUTH:
+
 ```bash
 python - <<'PY'
 import binascii,struct,time
