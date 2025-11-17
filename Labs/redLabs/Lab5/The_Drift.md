@@ -154,8 +154,8 @@ Quick peek:
 ```bash
 python scripts/peek_csv.py --out outputs -n 5
 ```
-<img width="898" height="488" alt="image" src="https://github.com/user-attachments/assets/05afb639-8f66-4de7-a548-ef98e31e5c7f" />
 
+<img width="765" height="443" alt="image" src="https://github.com/user-attachments/assets/ee5b31ff-fe0f-4d4d-b58f-46a3e7e372cd" />
 
 
 ### Visualize az/el and total pointing error
