@@ -113,7 +113,7 @@ cd ~/Desktop/Lab4
 
 ```bash
 # Show frames and parsed fields
-python tools/packet_tools.py --show assets/captured_kiss.hex
+python3 tools/packet_tools.py --show assets/captured_kiss.hex
 ```
 
 <img width="1189" height="88" alt="image" src="https://github.com/user-attachments/assets/147d50f5-2d67-4791-99f4-cd5d4071e31a" />
@@ -136,20 +136,20 @@ It intentionally lacks freshness and replay protections by default
 
 ```bash
 # run the emulator
-python emulators/groundstation_vuln.py
+python3 emulators/groundstation_vuln.py
 ```
 Keep it running in its terminal. Open a second terminal (or tab) for the replay steps, activate the venv again:
 
 ```bash
 # in a new terminal tab, back in the lab folder
-cd lab-4-the-relay
+cd ~/Desktop/Lab4
 source .venv/bin/activate
 ```
 
 Quick health check:
 ```bash
 # read status
-python tools/verify_success.py --url http://127.0.0.1:8000/status
+python3 tools/verify_success.py --url http://127.0.0.1:8000/status
 ```
 Expected JSON:
 ```json
@@ -169,7 +169,7 @@ Expected JSON:
 Send the two frames (AUTH followed by EXEC) to the emulator. Pace them at ~0.8 s so logs are readable.
 
 ```bash
-python tools/replay.py --kiss assets/captured_kiss.hex --host 127.0.0.1 --port 52001 --pace 0.8
+python3 tools/replay.py --kiss assets/captured_kiss.hex --host 127.0.0.1 --port 52001 --pace 0.8
 ```
 **What happens:**
 - Emulator logs **AUTH OK**, then **EXEC ACCEPTED → mode=OP owned=true**.
@@ -177,7 +177,7 @@ python tools/replay.py --kiss assets/captured_kiss.hex --host 127.0.0.1 --port 5
 
 Verify impact:
 ```bash
-python tools/verify_success.py --url http://127.0.0.1:8000/status
+python3 tools/verify_success.py --url http://127.0.0.1:8000/status
 ```
 Expected:
 ```json
@@ -202,13 +202,13 @@ REQUIRE_AUTH_NONCE = True   # bind AUTH to a fresh server-provided nonce
 
 Restart emulator:
 ```bash
-python emulators/groundstation_vuln.py
+python3 emulators/groundstation_vuln.py
 ```
 
 ### Freshness check
 Replay again:
 ```bash
-python tools/replay.py --kiss assets/captured_kiss.hex --host 127.0.0.1 --port 52001 --pace 0.8
+python3 tools/replay.py --kiss assets/captured_kiss.hex --host 127.0.0.1 --port 52001 --pace 0.8
 ```
 Expected log: `STALE TS - dropping`.  
 **Why:** Old frames should not be accepted as “fresh.”
@@ -224,12 +224,12 @@ Send a nonce request (a special synthetic command we added) and then AUTH with t
 
 ```bash
 # Generate a fresh AUTH sequence using helper (writes to temp file)
-python tools/packet_tools.py --show assets/captured_kiss.hex  # (just to remind format)
+python3 tools/packet_tools.py --show assets/captured_kiss.hex  # (just to remind format)
 ```
 
 ```bash
 # Use the prebuilt nonce+auth demo:
-python - <<'PY'
+python3 - <<'PY'
 from tools.packet_tools import FEND,FESC,TFEND,TFESC,parse_payload,unkiss
 import binascii,struct,time,sys
 def kiss(payload):
@@ -258,7 +258,7 @@ PY
 - Visit `http://127.0.0.1:8000/status`, copy the `nonce` value, then craft AUTH:
 
 ```bash
-python - <<'PY'
+python3 - <<'PY'
 import binascii,struct,time
 def kiss(payload):
     out=bytearray([0xC0,0x00])
@@ -284,7 +284,7 @@ PY
 
 Send the two freshly crafted frames:
 ```bash
-python tools/replay.py --kiss nonce_then_auth.hex --host 127.0.0.1 --port 52001 --pace 0.8
+python3 tools/replay.py --kiss nonce_then_auth.hex --host 127.0.0.1 --port 52001 --pace 0.8
 ```
 **Why:** You’re now seeing how **challenge‑response** thwarts naive replay of stale captures.
 
