@@ -35,17 +35,21 @@ gqrx &
 - Get the path of the files:
 
 ```bash
+cd ~/Desktop/BlueLab
+```
+
+```bash
 realpath pass_clean.iq
 # /home/satuser/Desktop/BlueLab/pass_clean.iq
 ```
 
 ```bash
-satuser@satvm:~/Desktop/BlueLab$ realpath pass_jam_0dB.iq 
+realpath pass_jam_0dB.iq 
 # /home/satuser/Desktop/BlueLab/pass_jam_0dB.iq
 ```
 
 ```bash
-satuser@satvm:~/Desktop/BlueLab$ realpath pass_jam_-5dB.iq 
+realpath pass_jam_-5dB.iq 
 # /home/satuser/Desktop/BlueLab/pass_jam_-5dB.iq
 ```
 
