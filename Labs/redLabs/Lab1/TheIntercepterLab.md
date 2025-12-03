@@ -54,120 +54,118 @@ gnuradio-companion &
 
 ![](/Assets/RLab1/Lab1-1.png)
 
-<img width="1920" height="1167" alt="image" src="https://github.com/user-attachments/assets/2ddbdd2b-51b3-4eb5-b4c4-4595666f81fa" />
-
 - First things first let's input our file, that's under ``~/Desktop/Lab1/assets/pass_01.iq``
 
 - To add nodes to the flow press ``Ctrl + f`` to open the search bar on the right
 
-<img width="420" height="110" alt="image" src="https://github.com/user-attachments/assets/08cd9ea9-2eb4-416b-85ac-b1096503d54b" />
+![](/Assets/RLab1/Lab1-2.png)
 
 - Look for ``File Source`` and drag it into the flow
 
-<img width="128" height="157" alt="image" src="https://github.com/user-attachments/assets/6b0cc087-9a43-451d-a7a6-c1de4c605532" />
+![](/Assets/RLab1/Lab1-3.png)
 
 - Double click it and at ``File`` put the path to the ``~/Desktop/Lab1/assets/pass_01.iq`` and the rest like in the image, then press **Apply** and **Ok**
 
-<img width="604" height="531" alt="image" src="https://github.com/user-attachments/assets/52f14882-7662-429b-8a92-86f64d60303f" />
+![](/Assets/RLab1/Lab1-4.png)
 
 >[!NOTE]
 >For each block we add don't forget the shortcut is `Ctrl + f`
 
 - Now let's add a ``Throttle`` and connect the 2 nodes by dragging the **out** from `File source` to the **in** of `Throttle`
 
-<img width="377" height="147" alt="image" src="https://github.com/user-attachments/assets/7afb082d-e2dd-4ca0-90a7-e91fb953a013" />
+![](/Assets/RLab1/Lab1-5.png)
 
 <br>
 
-<img width="548" height="447" alt="image" src="https://github.com/user-attachments/assets/ef271371-dce1-42e7-a949-cb485108d97c" />
+![](/Assets/RLab1/Lab1-6.png)
 
 - Double click the ``samp_rate`` variable and edit the **Value** to **48000**, then again press **Apply** and **Ok**, as we do with every block when we edit it
 
-<img width="109" height="86" alt="image" src="https://github.com/user-attachments/assets/39e8e7cf-ff0f-437f-bcec-d22e98b82a1c" />
+![](/Assets/RLab1/Lab1-7.png)
 
 - Add a ``QT GUI Frequency Sink`` and connect it to the ``Throttle``
 
-<img width="604" height="531" alt="image" src="https://github.com/user-attachments/assets/aec248cc-eb4b-4af3-a534-40de0dd6d4ce" />
+![](/Assets/RLab1/Lab1-8.png)
 
-<img width="681" height="180" alt="image" src="https://github.com/user-attachments/assets/57383e01-09d2-420d-aad2-fa8df8cf9527" />
+![](/Assets/RLab1/Lab1-9.png)
 
 - Double click the `Options` block on the top-left, in the **Id** field write **Lab1**, and under **Generate Options** select **QT GUI**
 
-<img width="598" height="533" alt="image" src="https://github.com/user-attachments/assets/d37cf9ce-5ab0-42fc-b9f2-f0d10c1eb968" />
+![](/Assets/RLab1/Lab1-10.png)
 
 
 - Run the flow by pressing ``F6``, you will be prompted to save the file, let's save it with the name **Lab1_GNU.grc** on **Desktop**
 
-<img width="828" height="50" alt="image" src="https://github.com/user-attachments/assets/4c5d6795-700a-44c0-b0a5-73c4673fca6f" />
+![](/Assets/RLab1/Lab1-11.png)
 
 - You’re looking at raw baseband. Two energy blobs near ±2 kHz = 2-FSK
 
-<img width="410" height="374" alt="image" src="https://github.com/user-attachments/assets/bde68567-0911-4910-8942-106f2afbcd20" />
+![](/Assets/RLab1/Lab1-12.png)
 
 - Close that and let's go on, we are going to keep that for reference and testing purposes
 
 - Add a ``Quadrature Demod`` and connect it to the ``Throttle``, this is a **Frequency discriminator** (turn FSK into a 1-D float), FSK encodes data as instantaneous frequency. Quadrature Demod converts frequency shifts into a float that swings high/low for 1/0
 
-<img width="598" height="533" alt="image" src="https://github.com/user-attachments/assets/c92d319c-f07a-4e1e-8cd7-e9b58c0f060c" />
+![](/Assets/RLab1/Lab1-13.png)
 
 
 - Now let's add those variables and some more, search for ``Variable`` and drag into the flow for each one, we need 3 more
 
-<img width="550" height="160" alt="image" src="https://github.com/user-attachments/assets/2b887f6a-4718-4287-a40e-63a069c8d060" />
+![](/Assets/RLab1/Lab1-14.png)
 
 <br>
 
-<img width="550" height="160" alt="image" src="https://github.com/user-attachments/assets/1be2275b-c6df-4fa8-a1e3-0fad05235a53" />
+![](/Assets/RLab1/Lab1-15.png)
 
 <br>
 
-<img width="550" height="160" alt="image" src="https://github.com/user-attachments/assets/d2de6b95-2d09-4af8-b056-e2f8034e90d3" />
+![](/Assets/RLab1/Lab1-16.png)
 
 <br>
 
-<img width="398" height="90" alt="image" src="https://github.com/user-attachments/assets/5a5e9617-56ca-474d-9f03-33a198f2d0da" />
+![](/Assets/RLab1/Lab1-17.png)
 
 
 - Add a ``Low Pass Filter`` and connect it to the ``Quadrature Demod``, it removes high-frequency noise so the clock recovery locks faster
 
-<img width="603" height="539" alt="image" src="https://github.com/user-attachments/assets/1605b263-c539-439f-902a-82ccc945d6e5" />
+![](/Assets/RLab1/Lab1-18.png)
 
 - Add a ``QT GUI Time Sink`` and connect it to the ``Low Pass Filter`` and set it to **float**
 
-<img width="603" height="539" alt="image" src="https://github.com/user-attachments/assets/763cfd8c-91d1-4366-987a-6e552d22e605" />
+![](/Assets/RLab1/Lab1-19.png)
 
-<img width="1149" height="434" alt="image" src="https://github.com/user-attachments/assets/2f31fbef-ded6-4e09-ab65-1ca5934442d7" />
+![](/Assets/RLab1/Lab1-20.png)
 
 
 - Run it again by pressing ``F6`` to visualize this
 
-<img width="595" height="584" alt="image" src="https://github.com/user-attachments/assets/c3d8f4f6-5456-459a-9d0b-9b99a608d8fd" />
+![](/Assets/RLab1/Lab1-21.png)
 
 - Add a ``Clock Recovery MM`` and connect it to the ``Low Pass Filter``, our float stream is oversampled at 48 kS/s. This block finds the optimal sample per symbol every 40 samples to align to bit boundaries
 
-<img width="602" height="536" alt="image" src="https://github.com/user-attachments/assets/3bd1d575-b145-4e39-91dc-a80607990b4e" />
+![](/Assets/RLab1/Lab1-22.png)
 
 - Add a ``Binary Slicer`` and connect it to the ``Clock Recovery MM`` and then a ``UChar To Float`` and connect it to the ``Binary Slicer``, the binary slicer converts each symbol into a byte 0x00 or 0x01
 
 - Add a ``QT GUI Time Sink`` and connect it to the ``UChar To Float``, set that to float
 
-<img width="602" height="536" alt="image" src="https://github.com/user-attachments/assets/8fb45293-404b-4a67-bdc0-503e526fe79a" />
+![](/Assets/RLab1/Lab1-23.png)
 
 <br>
 
-<img width="1094" height="527" alt="image" src="https://github.com/user-attachments/assets/012f2ea2-ba62-467d-9356-d7209617585a" />
+![](/Assets/RLab1/Lab1-24.png)
 
 - Run again with ``F6`` to see what we got
 
-<img width="661" height="837" alt="image" src="https://github.com/user-attachments/assets/7e95abf6-2a76-47b2-a2b8-9f1348836043" />
+![](/Assets/RLab1/Lab1-25.png)
 
 - Add a ``Add Const`` and connect it to the ``Binary Slicer``, we will add 48 to convert it to **ASCII**
 
-<img width="600" height="536" alt="image" src="https://github.com/user-attachments/assets/c8b0df5d-cee5-4a10-a264-7b49167ef67e" />
+![](/Assets/RLab1/Lab1-26.png)
 
 - Add a ``File Sink`` and connect it to the ``Add Const``, save the file into ``~/Desktop/Lab1/assets/pass_01.bits``
 
-<img width="600" height="536" alt="image" src="https://github.com/user-attachments/assets/faddda91-c6a7-46f4-8de7-4c630e596bf2" />
+![](/Assets/RLab1/Lab1-27.png)
 
 - Now you can run the flow for 5-10 seconds and check the file we created, you should get something like this
 
@@ -184,31 +182,31 @@ cat ~/Desktop/Lab1/assets/pass_01.bits
 
 - Let's add a ``Correlate Access Code - Tag`` and connect it to the ``Binary Slicer``
 
-<img width="600" height="536" alt="image" src="https://github.com/user-attachments/assets/730f486d-b076-4dcd-b831-98b4cb62b9bd" />
+![](/Assets/RLab1/Lab1-28.png)
 
 - To make sure we are getting hits, add a ``Tag Debug`` and connect it to the ``Correlate Access Code - Tag``
 
-<img width="600" height="536" alt="image" src="https://github.com/user-attachments/assets/6e9f7888-85af-470e-807c-6819ac15dd78" />
+![](/Assets/RLab1/Lab1-29.png)
 
 - Run the flow, you should see hits in the debug section in the bottom-left
 
-<img width="414" height="284" alt="image" src="https://github.com/user-attachments/assets/8c99b9c5-2c40-43aa-b5c4-55ffa0cfd946" />
+![](/Assets/RLab1/Lab1-30.png)
 
 - Add a ``Tagged Stream Align`` and connect it to the ``Correlate Access Code - Tag``
 
-<img width="596" height="534" alt="image" src="https://github.com/user-attachments/assets/78058138-a319-4133-b238-fe13053b146b" />
+![](/Assets/RLab1/Lab1-31.png)
 
 - Add  a ``Repack Bits`` and connect it to the ``Tagged Stream Align``
 
-<img width="596" height="534" alt="image" src="https://github.com/user-attachments/assets/acd09097-1d9c-4b6f-aec7-5e7eee28651d" />
+![](/Assets/RLab1/Lab1-32.png)
 
 - Add a ``File Sink`` and connect it to the ``Repack Bits``, save it into ``~/Desktop/Lab1/assets/pass_01_BPF.txt``
 
-<img width="596" height="534" alt="image" src="https://github.com/user-attachments/assets/64568f23-bf92-4cbe-a85f-75f9fd3f50d3" />
+![](/Assets/RLab1/Lab1-33.png)
 
 - This is how the final flow should look:
 
-<img width="1473" height="700" alt="image" src="https://github.com/user-attachments/assets/d7c39993-a93a-468b-a51d-e3844b9ced90" />
+![](/Assets/RLab1/Lab1-34.png)
 
 - Now let it Run for 5-10 seconds then stop
 
@@ -223,7 +221,7 @@ xxd assets/pass_01_BPF.txt
 
 - You should see information flowing out
 
-<img width="714" height="1096" alt="image" src="https://github.com/user-attachments/assets/bd5d3887-7ed3-4e32-96e1-00bc2608e6b6" />
+![](/Assets/RLab1/Lab1-45.png)
 
 - Hooray!! It works! We get valuable information:
 
@@ -233,7 +231,7 @@ xxd assets/pass_01_BPF.txt
 
 - We will use these to make a payload to get the last flag, run the same logic for ``pass_02.iq``, basically just change the paths
 
-<img width="618" height="268" alt="image" src="https://github.com/user-attachments/assets/892babed-4127-4c7f-b4dd-e3f237bed2c0" />
+![](/Assets/RLab1/Lab1-36.png)
 
 - We get an **ACK** response with out second flag: **FLAG2{protocol_reversed}**
 
@@ -279,7 +277,7 @@ python3 uplink_craft.py
 ```bash
 python3 tools/sat_gateway.py uplink.bin
 ```
-<img width="538" height="22" alt="image" src="https://github.com/user-attachments/assets/061850ba-c8eb-4c49-98ba-5a6af32375a4" />
+![](/Assets/RLab1/Lab1-37.png)
 
 - Now we got our 3rd and final flag: **FLAG3{uplink_forged_locally}**
 
