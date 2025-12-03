@@ -7,15 +7,6 @@
 
 Your task is to **reverse engineer the uplink authentication scheme, craft a forged control command, and trick the ground station into accepting it**
 
-## Setup ( Only if you are not using the VM )
-Download the zip for this main folder from [Here](./Lab3.zip)
-
-- Click the Download button
-
-<img width="330" height="177" alt="image" src="https://github.com/user-attachments/assets/df15f9ee-985a-4f6a-af65-32698e1aa337" />
-
-- Extract it
-
 ## Provided
 - ``assets/takeover_pass.iq`` — synthetic downlink (48 kS/s cf32)
 - ``groundstation/`` — control app (verifies your forged uplink)
