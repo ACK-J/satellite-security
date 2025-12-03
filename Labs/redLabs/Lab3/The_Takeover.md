@@ -63,11 +63,13 @@ docker compose version
 
 Just replace the ``File Source`` block and the `File Sink` blocks with our new `assets/takeover_pass.iq` and run it
 
+![image](/Assets/RLab3/RLab3-1.png)
+
 <img width="1474" height="703" alt="image" src="https://github.com/user-attachments/assets/51e9f712-8175-4018-970d-79851915a7d6" />
 
 4. The **assets** folder should now look like this
 
-<img width="725" height="51" alt="image" src="https://github.com/user-attachments/assets/132fc0ec-9ee1-453d-b5d0-ce09b9d8e90a" />
+![image](/Assets/RLab3/RLab3-2.png)
 
 5. View `takeover_pass_BPF.txt`
 
@@ -79,7 +81,8 @@ cd ~/Desktop/Lab3
 xxd -g1 assets/takeover_pass_BPF.txt
 ```
 
-<img width="793" height="1019" alt="image" src="https://github.com/user-attachments/assets/82d07b1b-57d5-4981-80a0-b71c6f68362a" />
+![image](/Assets/RLab3/RLab3-3.png)
+
 
 6. **Work out the auth rule**:  
    The hint in telemetry says:  
@@ -119,7 +122,9 @@ xxd -g1 assets/takeover_pass_BPF.txt
    ```bash
    xxd -g1 uplink.bin
    ```
-<img width="690" height="169" alt="image" src="https://github.com/user-attachments/assets/92b9ed26-2a29-4ccb-8aab-ab0cce766a0c" />
+
+   
+![image](/Assets/RLab3/RLab3-4.png)
 
 ### If you want to learn and build the payload from scratch, go [here](./Build_Payload_From_Scratch.md)
 
@@ -148,7 +153,7 @@ xxd -g1 assets/takeover_pass_BPF.txt
      curl -H "Content-Type: application/json" -d "{\"hex\":\"$HEX\"}" http://localhost:5000/uplink | jq .
      ```
 
-<img width="1042" height="187" alt="image" src="https://github.com/user-attachments/assets/97b4cb14-251c-4fe6-95d4-390de0ba29bf" />
+![image](/Assets/RLab3/RLab3-5.png)
 
 
 3. If correct you’ll see:  
