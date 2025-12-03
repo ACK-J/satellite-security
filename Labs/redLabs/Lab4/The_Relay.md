@@ -80,7 +80,6 @@ In gpredict:
 - **Edit -> Update TLE data from local files**: choose `assets/` and *open*
 
 ![image](/Assets/RLab4/RLab4-1.png)
-<img width="315" height="170" alt="image" src="https://github.com/user-attachments/assets/e39205f1-89bf-4ea8-ad78-a72ada1f3c7b" />
 
 - **File -> New Module**: create a new module (“DEMO-Lab”)
 
