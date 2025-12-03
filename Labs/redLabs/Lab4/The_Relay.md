@@ -10,15 +10,6 @@
 
 ## Setup 
 
-Download the zip for this main folder from [Here](./lab-4-the-relay.zip) ( Only if you are not using the VM )
-
-- Click the Download button
-
-<img width="330" height="177" alt="image" src="https://github.com/user-attachments/assets/df15f9ee-985a-4f6a-af65-32698e1aa337" />
-
-
-- Extract it
-
 ```bash
 # enter the lab folder
 cd ~/Desktop/Lab4
