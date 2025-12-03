@@ -46,6 +46,8 @@ Download the zip for this main folder from [Here](./Lab2.zip)
 
 - You will need the **GRC Flowgraph** we built during [Lab 1](../Lab1/TheInterceptLab.md)
 
+![image](/Assets/RLab2/RLab2-1.png)
+
 <img width="1472" height="772" alt="image" src="https://github.com/user-attachments/assets/ddd2d740-6965-4dcf-8d0e-3cf3023b7684" />
 
 - Let's use that for our ``pass_clean.iq``, we need to update our 2 ``Sink File`` blocks and our ``File Source`` block
