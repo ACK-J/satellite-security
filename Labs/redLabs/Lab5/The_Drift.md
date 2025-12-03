@@ -101,7 +101,6 @@ gpredict
 - Create a module and add **ODYSSEY-1** to see synthetic passes
 
 ![image](/Assets/RLab5/RLab5-1.png)
-<img width="840" height="567" alt="image" src="https://github.com/user-attachments/assets/b4ec4c17-aaed-404b-8cdd-4ac0ccb31419" />
 
 
 **Why:** Gives context, you’ll still do the rest locally with synthetic data
