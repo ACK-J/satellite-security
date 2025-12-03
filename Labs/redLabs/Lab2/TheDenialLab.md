@@ -46,19 +46,19 @@ Download the zip for this main folder from [Here](./Lab2.zip)
 
 - You will need the **GRC Flowgraph** we built during [Lab 1](../Lab1/TheInterceptLab.md)
 
-<img width="1472" height="772" alt="image" src="https://github.com/user-attachments/assets/ddd2d740-6965-4dcf-8d0e-3cf3023b7684" />
+![image](/Assets/RLab2/RLab2-1.png)
 
 - Let's use that for our ``pass_clean.iq``, we need to update our 2 ``Sink File`` blocks and our ``File Source`` block
 
-<img width="598" height="535" alt="image" src="https://github.com/user-attachments/assets/1fa52405-b79a-454d-872e-cd4d4836d7c3" />
+![image](/Assets/RLab2/RLab2-2.png)
 
 <br>
 
-<img width="598" height="535" alt="image" src="https://github.com/user-attachments/assets/f683fffc-2fc8-48bd-91e0-ca65aec144af" />
+![image](/Assets/RLab2/RLab2-3.png)
 
 <br>
 
-<img width="598" height="535" alt="image" src="https://github.com/user-attachments/assets/9b43fef9-8ceb-4874-900c-1246da11c7f5" />
+![image](/Assets/RLab2/RLab2-4.png)
 
 
 ```bash
@@ -71,7 +71,7 @@ xxd pass_clean_BPF.txt
 ```
 
 
-<img width="620" height="1016" alt="image" src="https://github.com/user-attachments/assets/3ad2b3a6-9c01-4505-b30b-c5b737f0261a" />
+![image](/Assets/RLab2/RLab2-5.png)
 
 - Now try to write your own jamming script with [Gaussian Noise](https://en.wikipedia.org/wiki/Gaussian_noise) or use this one if you don't know how
 
@@ -109,15 +109,15 @@ python3 jam.py pass_clean.iq pass_jam_-5dB.iq -5
 2. Because of Nr. 1, the BPF file will be empty
 3. The ``.bits`` files are completely different from eachother, I'll show only the begginings
 
-<img width="1920" height="234" alt="image" src="https://github.com/user-attachments/assets/b7f9435f-ba52-4b5b-a609-59dd1ed98232" />
+![image](/Assets/RLab2/RLab2-6.png)
 
 <br>
 
-<img width="1920" height="234" alt="image" src="https://github.com/user-attachments/assets/ab6651ff-968c-4db0-88ab-cecd93844e3c" />
+![image](/Assets/RLab2/RLab2-7.png)
 
 <br>
 
-<img width="1920" height="234" alt="image" src="https://github.com/user-attachments/assets/e9ed1d03-cd8e-43aa-9ea2-85437456045e" />
+![image](/Assets/RLab2/RLab2-8.png)
 
 - It makes it impossible to decode, and if you don't believe, try it yourself with this script
 
@@ -168,13 +168,13 @@ sudo docker compose up --build
 
 - Now visit ``http://localhost:5000``
 
-<img width="944" height="417" alt="image" src="https://github.com/user-attachments/assets/c542809a-d053-4cef-9a52-1cb202ec97ab" />
+![image](/Assets/RLab2/RLab2-9.png)
 
 - Dashboard shows live telemetry (``/stream`` SSE feed)
 
 - Save one decoded telemetry JSON as ``stale.json``
 
-<img width="1041" height="403" alt="image" src="https://github.com/user-attachments/assets/8ec0300c-b121-40e8-b627-bbfdf6509a0a" />
+![image](/Assets/RLab2/RLab2-10.png)
 
 ```bash
 echo `{"sat": "ODYSSEY-1", "epoch": 1713372000, "battery": 7.6, "temp": 21.0, "mode": "NOMINAL", "rx_rssi": -85, "counter": 11}` > stale.json
