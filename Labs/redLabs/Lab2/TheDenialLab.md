@@ -30,17 +30,6 @@ You will:
 
 ---
 
-## Requirements ( Only if you are not using the VM )
-
-Download the zip for this main folder from [Here](./Lab2.zip)
-
-- Click the Download button
-
-<img width="330" height="177" alt="image" src="https://github.com/user-attachments/assets/df15f9ee-985a-4f6a-af65-32698e1aa337" />
-
-
-- Extract it
-
 ## Start
 ### Part A — Break the Link (Simulated Jamming)
 
