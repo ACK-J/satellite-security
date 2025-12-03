@@ -29,7 +29,7 @@ They claim the link is secure. You're given two *historical* baseband captures f
 
 - Click the Download button
 
-![](./download.png)
+![1](./download.png)
 
 
 - Extract it
