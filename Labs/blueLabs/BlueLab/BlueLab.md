@@ -59,13 +59,14 @@ realpath pass_jam_-5dB.iq
 3. Input rate: **48000**
 4. Device string: `file=/home/satuser/Desktop/BlueLab/pass_clean.iq,freq=437.5e6,rate=48000,repeat=true,throttle=true`
 
+![image](/Assets/BLab1/BLab1-1.png)
 <img width="866" height="513" alt="image" src="https://github.com/user-attachments/assets/b163115f-ba48-46c5-b11f-7eff47539484" />
 
 - Click **Ok**
 
 5. Observe clean **BFSK tones** by pressing the **Arrow(play)** Button on the top-left
 
-<img width="738" height="687" alt="image" src="https://github.com/user-attachments/assets/02486823-47e6-48ff-a6d0-16189bf05595" />
+![image](/Assets/BLab1/BLab1-.png)
 
 - Then repeat for (by replacing `pass_clean.iq` in the **Device string**):
 - `pass_jam_0dB.iq`
@@ -80,9 +81,9 @@ Watch for:
 
 - Here are the other 2:
 
-<img width="738" height="684" alt="image" src="https://github.com/user-attachments/assets/d25ea8b9-71ca-4209-9fd5-5207870fbd05" />
+![image](/Assets/BLab1/BLab1-.png)
 
-<img width="738" height="684" alt="image" src="https://github.com/user-attachments/assets/408cace7-d781-4662-9374-61cc3ba4158a" />
+![image](/Assets/BLab1/BLab1-.png)
 
 # Clean Signal — Analysis
 
@@ -143,7 +144,7 @@ inspectrum &
 2. Set sample rate: **48000**
 3. Load `pass_clean.iq` by pressing **Input file** and selecting that file
 
-<img width="1573" height="550" alt="image" src="https://github.com/user-attachments/assets/a13daa62-054e-4a52-a36d-0754327f7b9c" />
+![image](/Assets/BLab1/BLab1-.png)
 
 4. What to look for:
 
@@ -208,11 +209,11 @@ sudo docker compose up --build
 
 2. Open browser -> `http://localhost:5000`
 
-<img width="889" height="420" alt="image" src="https://github.com/user-attachments/assets/cceaeb7b-2a3f-4692-9d57-5b835dfd290b" />
+![image](/Assets/BLab1/BLab1-.png)
 
 3. Open a new terminal by pressing the button on the **Top-Left** of your already open **terminal** and open **Wireshark**
 
-<img width="99" height="55" alt="image" src="https://github.com/user-attachments/assets/c1fef67e-bba5-4a00-b6a0-9c9bb3c3cf44" />
+![image](/Assets/BLab1/BLab1-.png)
 
 ```bash
 sudo wireshark &
@@ -220,15 +221,15 @@ sudo wireshark &
 
 4. Capture on `Loopback: lo`
 
-<img width="771" height="140" alt="image" src="https://github.com/user-attachments/assets/604cf65c-0531-4771-9535-c97ee5b576ad" />
+![image](/Assets/BLab1/BLab1-.png)
 
 - Double **Click** on that
 
 - Click any bigger **packet**
 
-<img width="1024" height="292" alt="image" src="https://github.com/user-attachments/assets/b5bdc6f8-6b63-4f6e-8780-8349e7031082" />
+![image](/Assets/BLab1/BLab1-.png)
 
-<img width="558" height="204" alt="image" src="https://github.com/user-attachments/assets/bd98e5ee-d448-4e1a-b1e3-17911da2291f" />
+![image](/Assets/BLab1/BLab1-.png)
 
 ---
 
@@ -247,12 +248,12 @@ seq 1 500 | xargs -I{} -P 20 sh -c \
    - Apply filter with `Ctrl + /` and paste this: `frame contains "ingest"`
    - See many POSTs to `/ingest`
 
-<img width="1042" height="341" alt="image" src="https://github.com/user-attachments/assets/a4833513-8ca5-407b-bf4c-0ab41da44e4a" />
+![image](/Assets/BLab1/BLab1-.png)
 
 
 3. On the top part of your window, go to **Statistics** -> **IO Graphs** -> **identify spike in rate**
 
-<img width="536" height="416" alt="image" src="https://github.com/user-attachments/assets/e4c9e6e3-ebd4-4bda-b918-79b8372d27e0" />
+![image](/Assets/BLab1/BLab1-.png)
 
 
 ---
@@ -315,7 +316,7 @@ sudo ln -s /etc/nginx/sites-available/groundstation \
 sudo nginx -t
 ```
 
-<img width="600" height="44" alt="image" src="https://github.com/user-attachments/assets/81b2cc3e-f8ba-4587-b241-b83387e19c29" />
+![image](/Assets/BLab1/BLab1-.png)
 
 - Reload Nginx
 
@@ -329,7 +330,7 @@ sudo systemctl reload nginx
 curl -v http://localhost/
 ```
 
-<img width="1385" height="515" alt="image" src="https://github.com/user-attachments/assets/1f6640e2-bbbe-47cf-a7f2-a2d2372b8614" />
+![image](/Assets/BLab1/BLab1-.png)
 
 
 - Trigger rate limiting
@@ -347,7 +348,7 @@ seq 1 200 | xargs -I{} -P 50 sh -c \
 sudo head -n 20 /var/log/nginx/error.log
 ```
 
-<img width="1690" height="332" alt="image" src="https://github.com/user-attachments/assets/220369d3-9129-463f-9906-383a6fedd0da" />
+![image](/Assets/BLab1/BLab1-.png)
 
 
 ***                                                                 
