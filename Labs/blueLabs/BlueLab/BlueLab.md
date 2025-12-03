@@ -60,13 +60,12 @@ realpath pass_jam_-5dB.iq
 4. Device string: `file=/home/satuser/Desktop/BlueLab/pass_clean.iq,freq=437.5e6,rate=48000,repeat=true,throttle=true`
 
 ![image](/Assets/BLab1/BLab1-1.png)
-<img width="866" height="513" alt="image" src="https://github.com/user-attachments/assets/b163115f-ba48-46c5-b11f-7eff47539484" />
 
 - Click **Ok**
 
 5. Observe clean **BFSK tones** by pressing the **Arrow(play)** Button on the top-left
 
-![image](/Assets/BLab1/BLab1-.png)
+![image](/Assets/BLab1/BLab1-2.png)
 
 - Then repeat for (by replacing `pass_clean.iq` in the **Device string**):
 - `pass_jam_0dB.iq`
@@ -81,9 +80,9 @@ Watch for:
 
 - Here are the other 2:
 
-![image](/Assets/BLab1/BLab1-.png)
+![image](/Assets/BLab1/BLab1-3.png)
 
-![image](/Assets/BLab1/BLab1-.png)
+![image](/Assets/BLab1/BLab1-4.png)
 
 # Clean Signal — Analysis
 
@@ -144,7 +143,7 @@ inspectrum &
 2. Set sample rate: **48000**
 3. Load `pass_clean.iq` by pressing **Input file** and selecting that file
 
-![image](/Assets/BLab1/BLab1-.png)
+![image](/Assets/BLab1/BLab1-5.png)
 
 4. What to look for:
 
@@ -209,11 +208,11 @@ sudo docker compose up --build
 
 2. Open browser -> `http://localhost:5000`
 
-![image](/Assets/BLab1/BLab1-.png)
+![image](/Assets/BLab1/BLab1-6.png)
 
 3. Open a new terminal by pressing the button on the **Top-Left** of your already open **terminal** and open **Wireshark**
 
-![image](/Assets/BLab1/BLab1-.png)
+![image](/Assets/BLab1/BLab1-7.png)
 
 ```bash
 sudo wireshark &
@@ -221,15 +220,15 @@ sudo wireshark &
 
 4. Capture on `Loopback: lo`
 
-![image](/Assets/BLab1/BLab1-.png)
+![image](/Assets/BLab1/BLab1-8.png)
 
 - Double **Click** on that
 
 - Click any bigger **packet**
 
-![image](/Assets/BLab1/BLab1-.png)
+![image](/Assets/BLab1/BLab1-9.png)
 
-![image](/Assets/BLab1/BLab1-.png)
+![image](/Assets/BLab1/BLab1-10.png)
 
 ---
 
@@ -248,12 +247,12 @@ seq 1 500 | xargs -I{} -P 20 sh -c \
    - Apply filter with `Ctrl + /` and paste this: `frame contains "ingest"`
    - See many POSTs to `/ingest`
 
-![image](/Assets/BLab1/BLab1-.png)
+![image](/Assets/BLab1/BLab1-11.png)
 
 
 3. On the top part of your window, go to **Statistics** -> **IO Graphs** -> **identify spike in rate**
 
-![image](/Assets/BLab1/BLab1-.png)
+![image](/Assets/BLab1/BLab1-12.png)
 
 
 ---
@@ -316,7 +315,7 @@ sudo ln -s /etc/nginx/sites-available/groundstation \
 sudo nginx -t
 ```
 
-![image](/Assets/BLab1/BLab1-.png)
+![image](/Assets/BLab1/BLab1-13.png)
 
 - Reload Nginx
 
@@ -330,7 +329,7 @@ sudo systemctl reload nginx
 curl -v http://localhost/
 ```
 
-![image](/Assets/BLab1/BLab1-.png)
+![image](/Assets/BLab1/BLab1-14.png)
 
 
 - Trigger rate limiting
@@ -348,7 +347,7 @@ seq 1 200 | xargs -I{} -P 50 sh -c \
 sudo head -n 20 /var/log/nginx/error.log
 ```
 
-![image](/Assets/BLab1/BLab1-.png)
+![image](/Assets/BLab1/BLab1-15.png)
 
 
 ***                                                                 
