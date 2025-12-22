@@ -52,7 +52,7 @@ The `File Source` just replays the **IQ samples** so we can analyze them reliabl
 
 ![](/Assets/RLab1/Lab1-4.png)
 
->[!NOTE]
+>[!IMPORTANT]
 >For each block we add don't forget the shortcut is `Ctrl + f`
 
 - Now let's add a ``Throttle`` and connect the 2 nodes by dragging the **out** from `File source` to the **in** of `Throttle`
@@ -71,9 +71,20 @@ The `File Source` just replays the **IQ samples** so we can analyze them reliabl
 
 - Double click the ``samp_rate`` variable and edit the **Value** to **48000**, then again press **Apply** and **Ok**, as we do with every block when we edit it
 
+
+>[!NOTE]
+>What is **Sample rate**?
+>It’s how many **samples per second** the signal contains
+>Here, **48 kS/s** tells every block how fast the signal was captured so **timing**, **filters**, and **symbol recovery** work correctly
+
 ![](/Assets/RLab1/Lab1-7.png)
 
 - Add a ``QT GUI Frequency Sink`` and connect it to the ``Throttle``
+
+>[!NOTE]
+>What is `QT GUI Frequency Sink`?
+>It shows the **signal** in the **frequency domain**
+>We use it to see where energy sits in the **spectrum** so we can quickly identify things like **bandwidth**, **offsets**, and **FSK tones**
 
 ![](/Assets/RLab1/Lab1-8.png)
 
@@ -88,13 +99,13 @@ The `File Source` just replays the **IQ samples** so we can analyze them reliabl
 
 ![](/Assets/RLab1/Lab1-11.png)
 
-- You’re looking at raw baseband. Two energy blobs near ±2 kHz = 2-FSK
+- You’re looking at **raw baseband**. Two energy blobs near **±2 kHz** = **2-FSK**
 
 ![](/Assets/RLab1/Lab1-12.png)
 
 - Close that and let's go on, we are going to keep that for reference and testing purposes
 
-- Add a ``Quadrature Demod`` and connect it to the ``Throttle``, this is a **Frequency discriminator** (turn FSK into a 1-D float), FSK encodes data as instantaneous frequency. Quadrature Demod converts frequency shifts into a float that swings high/low for 1/0
+- Add a ``Quadrature Demod`` and connect it to the ``Throttle``, this is a **Frequency discriminator** (turn **FSK** into a **1-D float**), FSK encodes data as instantaneous frequency. Quadrature Demod converts frequency shifts into a float that swings **high**/**low** for **1**/**0**
 
 ![](/Assets/RLab1/Lab1-13.png)
 
