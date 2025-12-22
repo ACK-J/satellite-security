@@ -98,7 +98,7 @@ The `File Source` just replays the **IQ samples** so we can analyze them reliabl
 - Run the flow by pressing ``F6``, you will be prompted to save the file, let's save it with the name **Lab1_GNU.grc** on **Desktop**
 
 >[!IMPORTANT]
->Here is a [Checkpoint File](/Assets/TheIntercept_1.grc)
+>Here is a [Checkpoint File](/Assets/RLab1/TheIntercept_1.grc)
 >
 >If you need to use this, just **download** it into your **VM** and **double click** on it
 
@@ -156,7 +156,7 @@ What do they mean?
 ![](/Assets/RLab1/Lab1-21.png)
 
 >[!IMPORTANT]
->Here is a [Checkpoint File](/Assets/TheIntercept_2.grc)
+>Here is a [Checkpoint File](/Assets/RLab1/TheIntercept_2.grc)
 >
 >If you need to use this, just **download** it into your **VM** and **double click** on it
 
@@ -179,7 +179,7 @@ What do they mean?
 ![](/Assets/RLab1/Lab1-25.png)
 
 >[!IMPORTANT]
->Here is a [Checkpoint File](/Assets/TheIntercept_3.grc)
+>Here is a [Checkpoint File](/Assets/RLab1/TheIntercept_3.grc)
 >
 >If you need to use this, just **download** it into your **VM** and **double click** on it
 
@@ -217,7 +217,7 @@ cat /home/satuser/Desktop/Lab1/assets/pass_01.bits
 ![](/Assets/RLab1/Lab1-30.png)
 
 >[!IMPORTANT]
->Here is a [Checkpoint File](/Assets/TheIntercept_4.grc)
+>Here is a [Checkpoint File](/Assets/RLab1/TheIntercept_4.grc)
 >
 >If you need to use this, just **download** it into your **VM** and **double click** on it
 
@@ -238,7 +238,7 @@ cat /home/satuser/Desktop/Lab1/assets/pass_01.bits
 ![](/Assets/RLab1/Lab1-34.png)
 
 >[!IMPORTANT]
->Here is a [Checkpoint File](/Assets/TheIntercept_5.grc)
+>Here is a [Checkpoint File](/Assets/RLab1/TheIntercept_5.grc)
 >
 >If you need to use this, just **download** it into your **VM** and **double click** on it
 
