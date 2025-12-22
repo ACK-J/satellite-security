@@ -126,6 +126,14 @@ The `File Source` just replays the **IQ samples** so we can analyze them reliabl
 
 ![](/Assets/RLab1/Lab1-17.png)
 
+What do they mean?
+
+- **sym_rate** (**1200**): The symbol rate - how many **bits per second** the **satellite** is transmitting
+
+- **sps** (**samples** per **symbol**): How many **samples** represent one **symbol**. This tells **clock recovery** where bit boundaries are
+
+- **fdev** (**2000 Hz**): **Frequency deviation** of the **FSK tones** - how far the signal shifts for a **0** vs **1**
+
 
 - Add a ``Low Pass Filter`` and connect it to the ``Quadrature Demod``, it removes high-frequency noise so the clock recovery locks faster
 
@@ -181,11 +189,11 @@ cat ~/Desktop/Lab1/assets/pass_01.bits
 ### Part B - Frame sync + parsing
 - For this lab, the Sync word is **0x1ACFFC1D**, a very common one, which in binary is **00011010110011111111110000011101**
 
-- Let's add a ``Correlate Access Code - Tag`` and connect it to the ``Binary Slicer``
+- Let's add a ``Correlate Access Code - Tag`` and connect it to the ``Binary Slicer``, it searches the **bitstream** for a known **sync word**. When it finds that **pattern**, it tags the stream so **downstream blocks** know **“a frame starts here”**
 
 ![](/Assets/RLab1/Lab1-28.png)
 
-- To make sure we are getting hits, add a ``Tag Debug`` and connect it to the ``Correlate Access Code - Tag``
+- To make sure we are getting hits, add a ``Tag Debug`` and connect it to the ``Correlate Access Code - Tag``, it just shows you the tags in the **stream**
 
 ![](/Assets/RLab1/Lab1-29.png)
 
@@ -193,11 +201,11 @@ cat ~/Desktop/Lab1/assets/pass_01.bits
 
 ![](/Assets/RLab1/Lab1-30.png)
 
-- Add a ``Tagged Stream Align`` and connect it to the ``Correlate Access Code - Tag``
+- Add a ``Tagged Stream Align`` and connect it to the ``Correlate Access Code - Tag``, it realigns the **stream** so data starts exactly at the **tagged frame boundary**
 
 ![](/Assets/RLab1/Lab1-31.png)
 
-- Add  a ``Repack Bits`` and connect it to the ``Tagged Stream Align``
+- Add  a ``Repack Bits`` and connect it to the ``Tagged Stream Align``, it groups **individual bits** into **bytes**. After **frame sync**, we need real **bytes** so the data can be dumped, parsed, and read as a **packet**
 
 ![](/Assets/RLab1/Lab1-32.png)
 
@@ -205,7 +213,7 @@ cat ~/Desktop/Lab1/assets/pass_01.bits
 
 ![](/Assets/RLab1/Lab1-33.png)
 
-- This is how the final flow should look:
+- This is how the **final flow** should look:
 
 ![](/Assets/RLab1/Lab1-34.png)
 
