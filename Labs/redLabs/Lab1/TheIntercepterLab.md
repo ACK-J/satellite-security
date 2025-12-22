@@ -97,6 +97,11 @@ The `File Source` just replays the **IQ samples** so we can analyze them reliabl
 
 - Run the flow by pressing ``F6``, you will be prompted to save the file, let's save it with the name **Lab1_GNU.grc** on **Desktop**
 
+>[!IMPORTANT]
+>Here is a [Checkpoint File](/Assets/TheIntercept_1.grc)
+>
+>If you need to use this, just **download** it into your **VM** and **double click** on it
+
 ![](/Assets/RLab1/Lab1-11.png)
 
 - You’re looking at **raw baseband**. Two energy blobs near **±2 kHz** = **2-FSK**
@@ -150,6 +155,11 @@ What do they mean?
 
 ![](/Assets/RLab1/Lab1-21.png)
 
+>[!IMPORTANT]
+>Here is a [Checkpoint File](/Assets/TheIntercept_2.grc)
+>
+>If you need to use this, just **download** it into your **VM** and **double click** on it
+
 - Add a ``Clock Recovery MM`` and connect it to the ``Low Pass Filter``, our float stream is oversampled at 48 kS/s. This block finds the optimal sample per symbol every 40 samples to align to bit boundaries
 
 ![](/Assets/RLab1/Lab1-22.png)
@@ -167,6 +177,11 @@ What do they mean?
 - Run again with ``F6`` to see what we got
 
 ![](/Assets/RLab1/Lab1-25.png)
+
+>[!IMPORTANT]
+>Here is a [Checkpoint File](/Assets/TheIntercept_3.grc)
+>
+>If you need to use this, just **download** it into your **VM** and **double click** on it
 
 - Add a ``Add Const`` and connect it to the ``Binary Slicer``, we will add 48 to convert it to **ASCII**
 
@@ -201,6 +216,11 @@ cat /home/satuser/Desktop/Lab1/assets/pass_01.bits
 
 ![](/Assets/RLab1/Lab1-30.png)
 
+>[!IMPORTANT]
+>Here is a [Checkpoint File](/Assets/TheIntercept_4.grc)
+>
+>If you need to use this, just **download** it into your **VM** and **double click** on it
+
 - Add a ``Tagged Stream Align`` and connect it to the ``Correlate Access Code - Tag``, it realigns the **stream** so data starts exactly at the **tagged frame boundary**
 
 ![](/Assets/RLab1/Lab1-31.png)
@@ -216,6 +236,11 @@ cat /home/satuser/Desktop/Lab1/assets/pass_01.bits
 - This is how the **final flow** should look:
 
 ![](/Assets/RLab1/Lab1-34.png)
+
+>[!IMPORTANT]
+>Here is a [Checkpoint File](/Assets/TheIntercept_5.grc)
+>
+>If you need to use this, just **download** it into your **VM** and **double click** on it
 
 - Now let it Run for 5-10 seconds then stop
 
