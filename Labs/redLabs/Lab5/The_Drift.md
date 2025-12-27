@@ -205,7 +205,7 @@ deactivate || true
 
 
 ***                                                                 
-<b><i>Continuing the course? </br>[Next Lab](/Labs/blueLabs/BlueLab/BlueLab.md)</i></b>
+<b><i>Continuing the course? </br>[Next Lab](/Labs/redLabs/Lab6/SLE_Hacking.md)</i></b>
 
 <b><i>Want to go back? </br>[Previous Lab](/Labs/redLabs/Lab4/The_Relay.md)</i></b>
 
