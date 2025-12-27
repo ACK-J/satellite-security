@@ -31,12 +31,14 @@ sudo docker compose up --build -d
 sudo docker ps --format "table {{.Names}}\t{{.Ports}}"
 ```
 
-Expected exposure:
-- TCP 2048 → Management REST API
-- TCP 55529 → SLE user port
-- UDP 16887–16888 → frame data
+<img width="1732" height="39" alt="image" src="https://github.com/user-attachments/assets/bdd623d9-6a53-4f99-99bf-ce326b2fb6aa" />
 
-This confirms a **remotely reachable management interface**.
+Expected exposure:
+- **TCP 2048** -> Management REST API
+- **TCP 55529** -> SLE user port
+- **UDP 16887–16888** -> frame data
+
+This confirms a **remotely reachable management interface**
 
 ---
 
@@ -51,7 +53,10 @@ Expected:
 - HTTP 404
 - `Server: TwistedWeb`
 
-This proves the service is alive.
+This proves the service is **alive**
+
+<img width="1169" height="198" alt="image" src="https://github.com/user-attachments/assets/10def248-70df-4551-aeeb-532be3813044" />
+
 
 ---
 
@@ -68,21 +73,24 @@ GET /api/sle-config
 GET, PATCH /api/sle-config/<string:param>
 ```
 
-### Finding
-The server **advertises sensitive management endpoints and HTTP verbs without authentication**.
+<img width="1169" height="198" alt="image" src="https://github.com/user-attachments/assets/90950af0-ed71-4ee7-a195-564a1d992ef0" />
 
-This alone constitutes a **high-severity vulnerability**.
+
+### Finding
+The server **advertises sensitive management endpoints and HTTP verbs without authentication**
+
+This alone constitutes a **high-severity vulnerability**
 
 ---
 
 ## 3. Exploitation: Unauthorized Enumeration
 
-> The following actions are **read-only** and safe.
-
 ### 3.1 Enumerate service instances
 ```bash
-curl -s http://127.0.0.1:2048/api/service-instances | jq .
+curl -s http://127.0.0.1:2048/api/service-instances/ | jq .
 ```
+
+<img width="471" height="75" alt="image" src="https://github.com/user-attachments/assets/ff7cfdbd-442d-4b0d-bb2a-8251f04ed19d" />
 
 **Impact:**
 - Attacker learns live operational state
@@ -95,22 +103,38 @@ curl -s http://127.0.0.1:2048/api/service-instances | jq .
 curl -s http://127.0.0.1:2048/api/sle-config | jq .
 ```
 
-**Impact:**
-- Disclosure of antenna IDs, ports, routing parameters
-- Enables targeted sabotage or stealthy interference
+<img width="471" height="306" alt="image" src="https://github.com/user-attachments/assets/6cacb5d9-68c4-4102-b306-54ab9f122887" />
 
-This is a **confidentiality breach**.
+| Parameter | Category | Exploitation Impact | Why It Matters |
+|---------|--------|---------------------|---------------|
+| `authentication-delay` | Auth / Timing | Expands authentication window; weakens replay and brute‑force resistance | Increases attacker tolerance for failed auth attempts |
+| `transmit-queue-size` | Availability | Queue exhaustion → degraded or stalled telemetry | Enables low‑effort DoS without crashing the service |
+| `startup-timer` | Availability | Forces repeated session initialization failures | Prevents stable link establishment |
+| `allow-non-use-heartbeat` | Session Control | Keeps dead or hijacked sessions alive | Enables stealthy degradation instead of hard failure |
+| `min-heartbeat` | Liveness | Premature disconnects under load | Causes false session death |
+| `max-heartbeat` | Liveness | Masks dead links for extended periods | Delays operator detection |
+| `min-deadfactor` | Reliability | Aggressive link termination | Amplifies minor disruptions |
+| `max-deadfactor` | Reliability | Suppresses failure detection | Enables long‑lived degraded states |
+| `max-trace-length` | Visibility | Log flooding or truncation | Reduces forensic visibility |
+| `min-reporting-cycle` | Telemetry | Forces excessive reporting | Resource exhaustion |
+| `max-reporting-cycle` | Telemetry | Suppresses reporting | Operational blind spots |
+| `server-types` | Architecture | Reveals supported service roles | Aids targeted attack planning |
+| `local-id` | Identity | Enables identity spoofing prep | Breaks trust assumptions |
+| `local-password` | Credentials | High‑value credential target | Direct compromise of trust |
+| `remote-peers` | Trust | Maps trusted endpoints | Enables impersonation or MITM planning |
 
 ---
 
-## 4. Exploitation Capability Validation (Non-Destructive)
+## 4. Exploitation Capability Validation
 
-You will **prove** modification is possible without executing it.
+You will **prove** modification is possible without executing it
 
 ### 4.1 Check allowed methods
 ```bash
 curl -i -X OPTIONS http://127.0.0.1:2048/api/service-instances/test
 ```
+
+<img width="507" height="216" alt="image" src="https://github.com/user-attachments/assets/9e06e697-4dd1-4b25-bd83-d38c81ec8b94" />
 
 Expected:
 - `Allow:` header including `POST`, `PATCH`, or `DELETE`
@@ -126,96 +150,32 @@ No further exploitation is required to prove risk.
 
 ---
 
-## 5. Threat Modeling (Required Exercise)
-
-Answer the following:
-
-- What happens if `/api/service-instances/<si>` is deleted?
-- What happens if frame routing parameters are modified?
-- Why is this worse than a typical web app vulnerability?
-
-Document answers.
-
----
-
-## 6. Evidence Collection
-
-Collect the following artifacts:
+## 6. Traffic capture:
 
 ```bash
-curl -i http://127.0.0.1:2048/api/
-curl -s http://127.0.0.1:2048/api/service-instances
-curl -s http://127.0.0.1:2048/api/sle-config
+sudo tcpdump -i lo -nn tcp port 2048 -w sle-management-abuse.pcap
 ```
 
-Optional traffic capture:
-```bash
-sudo tcpdump -i any -nn tcp port 2048 -w sle-management-abuse.pcap
-```
+- Then in another **terminal**, generate traffic:
 
----
-
-## 7. Root Cause Analysis
-
-Inspect `docker-compose.yml`:
-
-```yaml
-ports:
-  - "2048:2048/tcp"
-```
-
-### Root cause
-- Management plane bound to **0.0.0.0**
-- No authentication enabled
-- Intended for trusted lab use, deployed unsafely
-
-This is a **deployment vulnerability**, not a code bug.
-
----
-
-## 8. Remediation
-
-### 8.1 Restrict management plane exposure
-Modify:
-```yaml
-- "2048:2048/tcp"
-```
-
-To:
-```yaml
-- "127.0.0.1:2048:2048/tcp"
-```
-
-Restart:
-```bash
-sudo docker compose down
-sudo docker compose up --build -d
-```
-
----
-
-## 9. Verification (Post-Fix)
-
-### 9.1 Attacker POV (remote)
-```bash
-nc -vz <VM_IP> 2048
-```
-Expected: **connection refused**
-
-### 9.2 Admin POV (local)
 ```bash
 curl http://127.0.0.1:2048/api/
 ```
-Expected: still accessible locally
 
----
+```bash
+curl http://127.0.0.1:2048/api/sle-config/
+```
 
-## 10. Final Assessment
+- Go back to the **tcpdump terminal** and press **Ctrl + c** to stop the capture, it will save it into `sle-management-abuse.pcap` under the same folder
 
-### Severity: **High**
-- Unauthenticated management interface
-- Full CRUD operations exposed
-- Mission-impacting consequences
+- Open it:
+
+```bash
+xdg-open sle-management-abuse.pcap
+```
+
+<img width="1837" height="1057" alt="image" src="https://github.com/user-attachments/assets/03cc85a0-69ab-42ec-910d-371d7c3a2bf6" />
+
 
 ***                                                                 
 <b><i>Continuing the course? </br>[Next Lab](/Labs/blueLabs/BlueLab/BlueLab.md)</i></b>
