@@ -1,8 +1,26 @@
 ![image](https://github.com/user-attachments/assets/068fae26-6e8f-402f-ad69-63a4e6a1f59e)
 
-# Blue Lab 2 — SatDump Telemetry Replay: Decode, Compare, Detect
+# Blue Lab 2 - SatDump Telemetry Replay: Decode, Compare, Detect
 
 **Goal:** Use **SatDump** to decode two IQ recordings (clean vs replay) and **prove replay**
+
+Replay in this lab is demonstrated by showing that two passes:
+
+- Both look valid
+- Both demodulate cleanly
+- Both would be trusted by an operator
+
+But when you compare their derived artifacts:
+
+- The files are not identical (different hashes)
+
+- Yet they show unnatural similarity:
+    - Same structure
+    - Same spectral fingerprint
+    - Same repetition patterns
+
+A real satellite pass changes naturally.
+A replayed pass changes just enough to look different, but not enough to be real.
 
 ---
 
@@ -21,7 +39,7 @@ SatDumpLab/
 
 ---
 
-## Setup — Install SatDump + Dependencies
+## Setup - Install SatDump + Dependencies
 
 ### System packages
 
@@ -53,9 +71,7 @@ make -j`nproc`
 ```bash
 sudo make install
 ```
-```bash
-satdump-ui
-```
+
 
 ---
 
@@ -66,25 +82,28 @@ cd ~/Desktop/SatDumpLab
 mkdir -p output_clean output_replay results
 ```
 
-Register pipelines:
-
-```bash
-mkdir -p ~/.config/satdump ~/.satdump
-cp -r pipelines ~/.config/satdump/ 2>/dev/null || true
-cp -r pipelines ~/.satdump/ 2>/dev/null || true
-```
-
 ---
 
-# Part A — Decode CLEAN IQ
+# Part A - Decode CLEAN IQ
 
-1. Launch SatDump
-2. Input → IQ File → `pass_clean.iq`
-3. Sample rate: `48000`
-4. Center frequency: `437.5e6`
-5. Pipeline: `ODYSSEY-1 → BFSK Telemetry (Lab)`
-6. Output: `output_clean`
-7. Start
+- Launch SatDump
+
+```bash
+satdump-ui
+```
+
+<img width="999" height="635" alt="image" src="https://github.com/user-attachments/assets/fa04cdf8-0004-4adb-9faf-a7bcf8818a52" />
+
+
+1. Pipepline: `Analog Demodulation`
+2. Input File: `pass_clean.iq`
+3. Output Directory: `output_clean`
+4. Baseband Format: `cs8`
+5. Samplerate: `48000`
+
+<img width="999" height="635" alt="image" src="https://github.com/user-attachments/assets/34cdc2da-1d4b-41d4-912a-957f7d2778bd" />
+
+- Start
 
 Verify:
 
@@ -92,11 +111,13 @@ Verify:
 ls -lah output_clean
 ```
 
+<img width="877" height="84" alt="image" src="https://github.com/user-attachments/assets/d6fd28c5-56c5-4446-b14c-353ac635fa28" />
+
 ---
 
-# Part B — Decode REPLAYED IQ
+# Part B - Decode REPLAYED IQ
 
-Repeat Part A using:
+Repeat **Part A** using:
 
 - IQ file: `pass_replay.iq`
 - Output: `output_replay`
@@ -107,9 +128,12 @@ Verify:
 ls -lah output_replay
 ```
 
+<img width="877" height="84" alt="image" src="https://github.com/user-attachments/assets/afc5f05b-0f1a-4945-bb7a-08e55a675be7" />
+
+
 ---
 
-# Part C — Replay Detection
+# Part C - Replay Detection
 
 ## Hash comparison
 
@@ -134,7 +158,7 @@ cat output_replay/*.jsonl 2>/dev/null | sort | uniq -c | sort -nr | head -n 50
 
 ---
 
-# Part D — Evidence Collection
+# Part D - Evidence Collection
 
 ```bash
 diff -u output_clean/telemetry.json output_replay/telemetry.json > results/telemetry_diff.txt || true
