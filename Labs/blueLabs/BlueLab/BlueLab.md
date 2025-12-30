@@ -352,6 +352,8 @@ sudo head -n 20 /var/log/nginx/error.log
 
 ***                                                                 
 
+<b><i>Continuing the course? </br>[Next Lab](/Labs/blueLabs/SatDump/SatDump.md)</i></b>
+
 <b><i>Want to go back? </br>[Previous Lab](/Labs/redLabs/Lab5/The_Drift.md)</i></b>
 
 <b><i>Looking for a different lab? </br>[Lab Directory](/navigation.md)</i></b>
