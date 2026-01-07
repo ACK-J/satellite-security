@@ -320,7 +320,7 @@ python3 tools/sat_gateway.py uplink.bin
 
 
 ***                                                                 
-<b><i>Continuing the course? </br>[Next Lab](/Labs/redLabs/Lab2/TheDenialLab.md)</i></b>
+<b><i>Continuing the course? </br>[Next Lab](/Labs/redLabs/TheDenial/TheDenialLab.md)</i></b>
 
 <b><i>Looking for a different lab? </br>[Lab Directory](/navigation.md)</i></b>
 
@@ -331,10 +331,4 @@ Please be sure to destroy the lab environment!
 [Click here for instructions on how to destroy the Lab Environment](/labdestruction.md)
 
 ---
-
-
-
-
-
-
 
