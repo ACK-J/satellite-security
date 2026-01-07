@@ -281,9 +281,9 @@ python3 tools/replay.py --kiss nonce_then_auth.hex --host 127.0.0.1 --port 52001
 
 
 ***                                                                 
-<b><i>Continuing the course? </br>[Next Lab](/Labs/redLabs/Lab5/The_Drift.md)</i></b>
+<b><i>Continuing the course? </br>[Next Lab](/Labs/redLabs/TheDrift/TheDriftLab.md)</i></b>
 
-<b><i>Want to go back? </br>[Previous Lab](/Labs/redLabs/Lab3/The_Takeover.md)</i></b>
+<b><i>Want to go back? </br>[Previous Lab](/Labs/redLabs/TheTakeover/TheTakeoverLab.md)</i></b>
 
 <b><i>Looking for a different lab? </br>[Lab Directory](/navigation.md)</i></b>
 
