@@ -9,7 +9,7 @@
   - [Hacking SLE](Labs/redLabs/Lab6/SLE_Hacking.md)
 
 ### Blue Lab
-  - [Blue Lab](Labs/blueLabs/BlueLab/BlueLab.md)
+  - [Defending Odyssey](Labs/blueLabs/DefendingOdyssey/DefendingODYSSEYLab.md)
   - [SatDump Lab](Labs/blueLabs/SatDump/SatDump.md)
   - [Ephemerista Lab](Labs/blueLabs/EphemeristaLab/Ephemerista.md)
 
