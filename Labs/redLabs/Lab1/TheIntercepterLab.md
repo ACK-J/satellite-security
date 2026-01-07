@@ -245,7 +245,7 @@ cat /home/satuser/Desktop/Lab1/assets/pass_01.bits
 - Now let it Run for 5-10 seconds then stop
 
 ```bash
-cd ~/Desktop/Lab1
+cd ~/Desktop/TheIntercepter
 ```
 
 - Run
