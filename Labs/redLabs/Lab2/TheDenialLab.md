@@ -51,7 +51,7 @@ You will:
 
 
 ```bash
-cd ~/Desktop/Lab2
+cd ~/Desktop/TheDenial
 ```
 
 - Using **xxd** grants us this output, make sure it works for you as well
