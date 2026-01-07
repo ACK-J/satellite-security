@@ -1,7 +1,7 @@
 ![image](https://github.com/user-attachments/assets/068fae26-6e8f-402f-ad69-63a4e6a1f59e)
 
 
-# Lab 1 — The Intercept
+# Lab 1 - The Intercept
 
 **Scenario**: Your team is hired to test the downlink resilience of a startup's CubeSat, **ODYSSEY-1**
 They claim the link is secure. You're given two *historical* baseband captures from a ground station test
@@ -15,17 +15,17 @@ They claim the link is secure. You're given two *historical* baseband captures f
 - Craft a valid **command packet** and feed it to a **local uplink gateway** (no RF) to receive the final flag
 
 ## What You Get
-- `assets/pass_01.iq` — complex float32, 48 kS/s baseband (cleaner)
-- `assets/pass_02.iq` — complex float32, 48 kS/s baseband (noisier)
-- `tools/generate_captures.py` — deterministically regenerates the captures
-- `tools/sat_gateway.py` — local validator for your crafted uplink packet
-- `assets/*.json` — samplerate + format metadata
+- `assets/pass_01.iq` - complex float32, 48 kS/s baseband (cleaner)
+- `assets/pass_02.iq` - complex float32, 48 kS/s baseband (noisier)
+- `tools/generate_captures.py` - deterministically regenerates the captures
+- `tools/sat_gateway.py` - local validator for your crafted uplink packet
+- `assets/*.json` - samplerate + format metadata
 
 
 ### Flags
-- FLAG1{...} — first telemetry
-- FLAG2{...} — second pass ACK
-- FLAG3{...} — returned by local gateway on valid command
+- FLAG1{...} - first telemetry
+- FLAG2{...} - second pass ACK
+- FLAG3{...} - returned by local gateway on valid command
 
 # Start
 ### Part A - Get bits out
