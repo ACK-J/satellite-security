@@ -7,7 +7,7 @@
 
 They claim the link is secure. You're given two *historical* baseband captures from a ground station test
 
-> Goal: Intercept → Decode → Reverse → (Simulated) Command
+> Goal: Intercept -> Decode -> Reverse -> (Simulated) Command
 
 ## Learning Outcomes
 - Practice SDR recon on *synthetic* captures (recognize FSK, estimate bitrate)
