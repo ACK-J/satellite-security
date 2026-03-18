@@ -40,7 +40,7 @@ gnuradio-companion &
 
 ![](/Assets/RLab1/Lab1-1.png)
 
-- First things first, let's input data from our file that's under ``/home/satuser/Desktop/Lab1/assets/pass_01.iq``
+- First things first, let's input data from our file that's under ``/home/satuser/Desktop/TheIntercepter/assets/pass_01.iq``
 
 - To add blocks to the flow press ``Ctrl + f`` to open the search bar on the right
 
