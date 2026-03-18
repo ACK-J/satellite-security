@@ -162,12 +162,14 @@ sudo docker compose up --build
 
 - Dashboard shows live telemetry (``/stream`` SSE feed)
 
-- Save one decoded telemetry JSON as ``stale.json``
+- Go to `http://localhost:5000`
 
 ![image](/Assets/RLab2/RLab2-10.png)
 
+- Save one decoded telemetry JSON as ``stale.json``:
+
 ```bash
-echo `{"sat": "ODYSSEY-1", "epoch": 1713372000, "battery": 7.6, "temp": 21.0, "mode": "NOMINAL", "rx_rssi": -85, "counter": 11}` > stale.json
+echo `<JSON HERE>` > stale.json
 ```
 
 - Run the attack
