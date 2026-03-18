@@ -171,7 +171,7 @@ curl http://127.0.0.1:2048/api/sle-config/
 - Open it:
 
 ```bash
-xdg-open sle-management-abuse.pcap
+wireshark sle-management-abuse.pcap
 ```
 
 <img width="1837" height="1057" alt="image" src="https://github.com/user-attachments/assets/03cc85a0-69ab-42ec-910d-371d7c3a2bf6" />
