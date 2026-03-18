@@ -162,14 +162,14 @@ sudo docker compose up --build
 
 - Dashboard shows live telemetry (``/stream`` SSE feed)
 
-- Go to `http://localhost:5000`
+- Go to `http://localhost:5000/stream`
 
 ![image](/Assets/RLab2/RLab2-10.png)
 
 - Save one decoded telemetry JSON as ``stale.json``:
 
 ```bash
-echo `<JSON HERE>` > stale.json
+echo '<JSON HERE>' > stale.json
 ```
 
 - Run the attack
@@ -208,6 +208,11 @@ curl -s -H "Content-Type: application/json"   --data '{"mode":"SAFE"}' http://lo
 ```
 
 - There is no latency whatsoever because the server is keeping up, let's make it weaker
+
+```bash
+cd ~/Desktop/TheDenial/groundstation
+```
+
 ```bash
 sudo docker compose ps
 ```
