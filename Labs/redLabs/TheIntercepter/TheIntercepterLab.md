@@ -30,6 +30,9 @@ They claim the link is secure. You're given two *historical* baseband captures f
 
 # Start
 ### Part A - Get bits out
+
+- Open a terminal
+
 - Open [GNU Radio Companion](/Tools%20and%20Frameworks/GNU_radio.md)
 ```bash
 gnuradio-companion &
