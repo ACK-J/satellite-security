@@ -100,7 +100,7 @@ The `File Source` just replays the **IQ samples** so we can analyze them reliabl
 ![](/Assets/RLab1/Lab1-10.png)
 
 
-- Run the flow by pressing ``F6``, you will be prompted to save the file, let's save it with the name **Lab1_GNU.grc** on **Desktop**
+- Run the flow by pressing ``F6``, you will be prompted to save the file, let's save it with the name **Lab1_GNU.grc** on **Desktop**, you might also get a warning, ignore it!
 
 >[!IMPORTANT]
 >Here is a [Checkpoint File](/Assets/RLab1/TheIntercept_1.grc)
