@@ -54,7 +54,8 @@ The `File Source` just replays the **IQ samples** so we can analyze them reliabl
 
 - Double click the ``File Source`` block to open the configuration settings. In the ``File`` field, put the path to the ``/home/ubuntu/Desktop/TheIntercepter/assets/pass_01.iq`` capture file. Fill out the rest of the fields to match what you see in the image. Press **Apply** and then **Ok**
 
-![](/Assets/RLab1/Lab1-4.png)
+
+<img src="/Assets/RLab1/Lab1-4.png" width="400">
 
 >[!IMPORTANT]
 >For each block we add, don't forget that the shortcut to search for blocks is `Ctrl + f`
