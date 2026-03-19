@@ -41,24 +41,24 @@ cd ~/Desktop/DefendingODYSSEY
 
 ```bash
 realpath pass_clean.iq
-# /home/satuser/Desktop/DefendingODYSSEY/pass_clean.iq
+# /home/ubuntu/Desktop/DefendingODYSSEY/pass_clean.iq
 ```
 
 ```bash
 realpath pass_jam_0dB.iq 
-# /home/satuser/Desktop/DefendingODYSSEY/pass_jam_0dB.iq
+# /home/ubuntu/Desktop/DefendingODYSSEY/pass_jam_0dB.iq
 ```
 
 ```bash
 realpath pass_jam_-5dB.iq 
-# /home/satuser/Desktop/DefendingODYSSEY/pass_jam_-5dB.iq
+# /home/ubuntu/Desktop/DefendingODYSSEY/pass_jam_-5dB.iq
 ```
 
 - If this window pops up, go to **File** -> **I/O Devices**
 
 2. Select **Complex Sampled (IQ) File** Device
 3. Input rate: **48000**
-4. Device string: `file=/home/satuser/Desktop/DefendingODYSSEY/pass_clean.iq,freq=437.5e6,rate=48000,repeat=true,throttle=true`
+4. Device string: `file=/home/ubuntu/Desktop/DefendingODYSSEY/pass_clean.iq,freq=437.5e6,rate=48000,repeat=true,throttle=true`
 
 <img width="690" height="469" alt="image" src="https://github.com/user-attachments/assets/0f4434b8-be3b-44ec-acdb-64e84591f8b0" />
 
