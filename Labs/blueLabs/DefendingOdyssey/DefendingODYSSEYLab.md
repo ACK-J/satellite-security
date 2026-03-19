@@ -71,7 +71,11 @@ realpath pass_jam_-5dB.iq
 
 - Then repeat for (by replacing `pass_clean.iq` in the **Device string**):
 - `pass_jam_0dB.iq`
+
+- `file=/home/ubuntu/Desktop/DefendingODYSSEY/pass_jam_0dB.iq,freq=437.5e6,rate=48000,repeat=true,throttle=true`
 - `pass_jam_-5dB.iq`
+-  `file=/home/ubuntu/Desktop/DefendingODYSSEY/pass_jam_-5dB.iq,freq=437.5e6,rate=48000,repeat=true,throttle=true`
+- 
 
 - Do it by going to **File** -> **I/O Devices**
 
