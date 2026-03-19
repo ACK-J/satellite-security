@@ -9,7 +9,8 @@
   - [Hacking SLE](Labs/redLabs/SLEHacking/SLEHackingLab.md)
 
 ### Blue Lab
-  - [Defending Odyssey](Labs/blueLabs/DefendingOdyssey/DefendingODYSSEYLab.md)
+  - [Defending Odyssey RF Analysis](Labs/blueLabs/DefendingOdyssey/DefendingODYSSEY_RF-Analysis.md)
+  - [Defending Odyssey API & DoS Protection](Labs/blueLabs/DefendingOdyssey/DefendingODYSSEY_API%26DoS-Protection.md)
   - [SatDump Lab](Labs/blueLabs/SatDump/SatDump.md)
   - [Ephemerista Lab](Labs/blueLabs/EphemeristaLab/Ephemerista.md)
 
