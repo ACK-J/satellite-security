@@ -90,7 +90,7 @@ gpredict
 ```
 
 - gpredict -> **Edit -> Update TLE From Local Files…** -> choose `/home/ubuntu/Desktop/TheDrift/assets/`   
-- Create a module and add **ODYSSEY-1** to see synthetic passes
+- Create a module by goint to **File** -> **New Module** and add **ODYSSEY-1** to see synthetic passes
 
 ![image](/Assets/RLab5/RLab5-1.png)
 
@@ -124,7 +124,7 @@ Open and edit `config/gs.json` if desired:
 ```bash
 sudo docker build -t orekit-drift -f docker/Dockerfile .
 ```
-**Why:** Encapsulates Java/Orekit/Hipparchus and public `orekit-data` so students don’t install JVM bits
+**Why:** Encapsulates Java/Orekit/Hipparchus and public `orekit-data`
 
 ### Run propagation: real vs forged
 ```bash
@@ -155,7 +155,7 @@ python3 scripts/peek_csv.py --out outputs -n 5
 python3 scripts/visualize_pointing.py --out outputs
 ```
 
-You’ll see three windows:
+You’ll see three windows one by one, to get to the next one just close the current one that you are seeing:
 - **Azimuth vs time**: real vs forged
 
 ![image](/Assets/RLab5/RLab5-4.png)
@@ -185,7 +185,7 @@ sudo docker run --rm -v "$(pwd):/work:Z" orekit-drift   python3 scripts/run_anal
 python3 scripts/visualize_pointing.py --out outputs
 ```
 
-**Why:** Makes the columnar edits in line‑2 tangible; students see precisely how a tiny change impacts pointing
+**Why:** Makes the columnar edits in line‑2 tangible; you see precisely how a tiny change impacts pointing
 
 ### Antenna controller simulator
 ```bash
@@ -198,7 +198,7 @@ python3 emulators/antenna_controller_sim.py --pointing outputs/forged_pointing.c
 
 ## Cleanup
 ```bash
-deactivate || true
+deactivate
 ```
 
 
