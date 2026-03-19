@@ -116,11 +116,16 @@ sha256sum output_replay/* | sort > replay.hashes.txt
 diff -u clean.hashes.txt replay.hashes.txt
 ```
 
-<img width="1061" height="103" alt="image" src="https://github.com/user-attachments/assets/fcc276fa-bf90-41ad-9fd4-99e2bd5c5033" />
+<img width="1049" height="111" alt="2026-03-19_15-29" src="https://github.com/user-attachments/assets/2ccabd9b-3ea9-44ac-958c-3c3296387c65" />
+
 
 - BOOM! The hashes are different, the replay has been detected!
 
 ## Prove Replay With Spectograms
+
+```bash
+sudo apt install sox -y
+```
 
 ```bash
 sox output_clean/*.wav -n spectrogram -o results/clean.png
