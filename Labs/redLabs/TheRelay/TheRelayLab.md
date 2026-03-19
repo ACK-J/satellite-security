@@ -209,75 +209,161 @@ If you disable `REQUIRE_FRESH_TS` but keep `REJECT_REPLAY = True`, the first run
 **Why:** Caches block identical frame hashes even if timestamps look fine.
 
 ### Nonce-bound AUTH
-With `REQUIRE_AUTH_NONCE = True`, the client must ask for a server nonce and echo it in `AUTH`.
 
-Send a nonce request (a special synthetic command we added) and then AUTH with that nonce using the provided helper:
+With `REQUIRE_AUTH_NONCE = True`, the client must request a server-issued nonce and echo it back inside `AUTH`. Old captured frames carry no valid nonce, so they're rejected outright.
 
-```bash
-# Generate a fresh AUTH sequence using helper (writes to temp file)
-python3 tools/packet_tools.py --show assets/captured_kiss.hex  # (just to remind format)
-```
+Rather than running two separate scripts and pasting values by hand, use the provided helper - it handles the full challenge-response flow automatically.
+
+First, create the script:
 
 ```bash
-# Use the prebuilt nonce+auth demo:
-python3 - <<'PY'
-from tools.packet_tools import FEND,FESC,TFEND,TFESC,parse_payload,unkiss
-import binascii,struct,time,sys
-def kiss(payload):
-    out=bytearray([0xC0,0x00])
+cat > tools/nonce_auth_demo.py << 'EOF'
+#!/usr/bin/env python3
+"""
+nonce_auth_demo.py  –  Full challenge-response AUTH flow in one script.
+
+Usage:
+    python3 tools/nonce_auth_demo.py [--host HOST] [--port PORT]
+                                     [--status-url URL] [--token TOKEN]
+                                     [--out FILE]
+"""
+
+import binascii, socket, struct, time, urllib.request, json, argparse
+
+# ── KISS helpers ──────────────────────────────────────────────────────────────
+
+FEND, FESC, TFEND, TFESC = 0xC0, 0xDB, 0xDC, 0xDD
+SYNC = 0x1ACFFC1D
+
+def kiss_wrap(payload: bytes) -> bytes:
+    out = bytearray([FEND, 0x00])
     for b in payload:
-        if b==0xC0: out+=bytes([0xDB,0xDC])
-        elif b==0xDB: out+=bytes([0xDB,0xDD])
-        else: out.append(b)
-    out.append(0xC0); return bytes(out)
-def build(cmd, ts=None, ctr=500):
-    SYNC=0x1ACFFC1D
-    if ts is None: ts=int(time.time())
-    body=struct.pack(">I",SYNC)+struct.pack(">I",ts)+struct.pack(">H",ctr)
-    p=cmd.encode(); body+=struct.pack(">H",len(p))+p
-    crc=binascii.crc32(body)&0xFFFFFFFF; body+=struct.pack(">I",crc)
-    return kiss(body)
-# 1) Ask for nonce
-open("nonce_then_auth.hex","w").write(build("CHALLENGE?").hex()+"
-")
-# 2) (Manually check nonce via /status), then craft AUTH with that nonce value:
-print("Now run emulator; check nonce at http://127.0.0.1:8000/status and edit the next line.")
-PY
+        if   b == FEND: out += bytes([FESC, TFEND])
+        elif b == FESC: out += bytes([FESC, TFESC])
+        else:           out.append(b)
+    out.append(FEND)
+    return bytes(out)
+
+def build_frame(cmd: str, ctr: int = 0) -> bytes:
+    ts   = int(time.time())
+    body = struct.pack(">I", SYNC) + struct.pack(">I", ts) + struct.pack(">H", ctr)
+    enc  = cmd.encode()
+    body += struct.pack(">H", len(enc)) + enc
+    crc  = binascii.crc32(body) & 0xFFFFFFFF
+    body += struct.pack(">I", crc)
+    return kiss_wrap(body)
+
+# ── Network helpers ───────────────────────────────────────────────────────────
+
+def send_frame(frame: bytes, host: str, port: int) -> None:
+    with socket.create_connection((host, port), timeout=5) as s:
+        s.sendall(frame)
+
+def poll_nonce(status_url: str, retries: int = 10, delay: float = 0.5) -> str:
+    """Keep asking /status until the emulator has issued a nonce."""
+    for _ in range(retries):
+        with urllib.request.urlopen(status_url, timeout=3) as r:
+            data = json.loads(r.read())
+        nonce = data.get("nonce")
+        if nonce:
+            return nonce
+        time.sleep(delay)
+    raise RuntimeError("Emulator never issued a nonce – is it running with REQUIRE_AUTH_NONCE=True?")
+
+# ── Main flow ─────────────────────────────────────────────────────────────────
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--host",       default="127.0.0.1")
+    ap.add_argument("--port",       default=52001, type=int)
+    ap.add_argument("--status-url", default="http://127.0.0.1:8000/status")
+    ap.add_argument("--token",      default="abcd1234")
+    ap.add_argument("--out",        default="nonce_then_auth.hex")
+    args = ap.parse_args()
+
+    frames = []
+
+    # Step 1 – send CHALLENGE? so the emulator generates a nonce
+    print("[1/3] Sending CHALLENGE? ...")
+    challenge = build_frame("CHALLENGE?", ctr=500)
+    send_frame(challenge, args.host, args.port)
+    frames.append(challenge)
+
+    # Step 2 – wait for the nonce to appear in /status
+    print("[2/3] Polling for nonce ...")
+    nonce = poll_nonce(args.status_url)
+    print(f"      Got nonce: {nonce}")
+
+    # Step 3 – build AUTH frame that echoes the nonce, write combined hex file
+    print("[3/3] Building AUTH frame ...")
+    auth = build_frame(f"AUTH token={args.token} nonce={nonce}", ctr=501)
+    frames.append(auth)
+
+    with open(args.out, "w") as f:
+        for frame in frames:
+            f.write(frame.hex() + "\n")
+
+    print(f"\n✓  Wrote {len(frames)} frames to {args.out}")
+    print(f"   Replay with:  python3 tools/replay.py --kiss {args.out} "
+          f"--host {args.host} --port {args.port} --pace 0.8")
+
+if __name__ == "__main__":
+    main()
+EOF
 ```
-
-
-- Visit `http://127.0.0.1:8000/status`, copy the `nonce` value, then craft AUTH:
 
 ```bash
-python3 - <<'PY'
-import binascii,struct,time
-def kiss(payload):
-    out=bytearray([0xC0,0x00])
-    for b in payload:
-        if b==0xC0: out+=bytes([0xDB,0xDC])
-        elif b==0xDB: out+=bytes([0xDB,0xDD])
-        else: out.append(b)
-    out.append(0xC0); return bytes(out)
-def build(cmd, ts=None, ctr=501):
-    SYNC=0x1ACFFC1D
-    if ts is None: ts=int(time.time())
-    body=struct.pack(">I",SYNC)+struct.pack(">I",ts)+struct.pack(">H",ctr)
-    p=cmd.encode(); body+=struct.pack(">H",len(p))+p
-    crc=binascii.crc32(body)&0xFFFFFFFF; body+=struct.pack(">I",crc)
-    return kiss(body)
-
-nonce = input("Paste nonce from /status: ").strip()
-open("nonce_then_auth.hex","a").write(build(f"AUTH token=abcd1234 nonce={nonce}").hex()+"
-")
-print("Wrote nonce_then_auth.hex")
-PY
+python3 tools/nonce_auth_demo.py
 ```
 
-Send the two freshly crafted frames:
+**What it does, step by step:**
+
+1. Builds a `CHALLENGE?` frame and sends it to the emulator - this triggers nonce generation
+2. Polls `http://127.0.0.1:8000/status` until the nonce appears
+3. Builds a fresh `AUTH token=abcd1234 nonce=<fetched>` frame embedding that nonce
+4. Writes both frames to `nonce_then_auth.hex`
+
+You'll see output like:
+```
+[1/3] Sending CHALLENGE? ...
+[2/3] Polling for nonce ...
+      Got nonce: a3f7c2e1
+[3/3] Building AUTH frame ...
+
+✓  Wrote 2 frames to nonce_then_auth.hex
+   Replay with:  python3 tools/replay.py --kiss nonce_then_auth.hex --host 127.0.0.1 --port 52001 --pace 0.8
+```
+
+Once the script is in place, run it:
+
+```bash
+python3 tools/nonce_auth_demo.py
+```
+
+Then replay the freshly crafted frames:
+
 ```bash
 python3 tools/replay.py --kiss nonce_then_auth.hex --host 127.0.0.1 --port 52001 --pace 0.8
 ```
-**Why:** You’re now seeing how **challenge‑response** thwarts naive replay of stale captures.
+
+Expected emulator log: `AUTH OK → EXEC ACCEPTED → mode=OP`
+
+Now try replaying the **original** stale capture:
+
+```bash
+python3 tools/replay.py --kiss assets/captured_kiss.hex --host 127.0.0.1 --port 52001 --pace 0.8
+```
+
+Expected log: `NONCE MISMATCH - dropping`
+
+**Why:** The nonce is single-use and server-generated. An attacker who recorded yesterday's traffic has no way to forge a valid nonce for today's session - challenge-response breaks replay even when timestamps are absent or clocks are unsynchronized.
+
+> [!TIP]
+> You can override defaults with flags if your setup differs:
+> ```bash
+> python3 tools/nonce_auth_demo.py --host 127.0.0.1 --port 52001 \
+>     --status-url http://127.0.0.1:8000/status --token abcd1234
+> ```
 
 
 ***                                                                 
