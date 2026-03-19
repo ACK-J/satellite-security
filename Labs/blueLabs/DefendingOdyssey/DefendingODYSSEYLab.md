@@ -60,8 +60,6 @@ realpath pass_jam_-5dB.iq
 3. Input rate: **48000**
 4. Device string: `file=/home/satuser/Desktop/DefendingODYSSEY/pass_clean.iq,freq=437.5e6,rate=48000,repeat=true,throttle=true`
 
-![image](/Assets/BLab1/BLab1-1.png)
-
 <img width="690" height="469" alt="image" src="https://github.com/user-attachments/assets/0f4434b8-be3b-44ec-acdb-64e84591f8b0" />
 
 - Click **Ok**
