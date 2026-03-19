@@ -25,7 +25,7 @@ Auth rule (discover/confirm from pass): auth = sha1(str(epoch) + sat + "-BLUE")[
 # Start
 ## Part A - Decode the Downlink
 
-1. **Open GNU Radio Companion (GRC)** and take the flow from [Lab 1](../Lab1/TheIntercepterLab.md)
+1. **Open GNU Radio Companion (GRC)** and take the flow from [Lab 1](../TheIntercepter/TheIntercepterLab.md)
 
 2. Run it. This will output raw bits into `takeover.bits`.
 
