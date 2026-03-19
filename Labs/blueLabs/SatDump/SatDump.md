@@ -94,7 +94,8 @@ Verify:
 ls -lah output_replay
 ```
 
-<img width="877" height="84" alt="image" src="https://github.com/user-attachments/assets/afc5f05b-0f1a-4945-bb7a-08e55a675be7" />
+<img width="723" height="93" alt="2026-03-19_15-27" src="https://github.com/user-attachments/assets/b33cd213-55d2-4bc5-a163-3eb262b8c8c0" />
+
 
 
 ---
