@@ -20,15 +20,6 @@ Protocol recap (from Lab 1):
 Auth rule (discover/confirm from pass): auth = sha1(str(epoch) + sat + "-BLUE")[:8]
 
 
-Check your tools:
-```bash
-gnuradio-companion --version
-python3 --version
-docker --version
-docker compose version
-```
-
-
 ---
 
 # Start
