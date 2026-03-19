@@ -31,6 +31,7 @@ You already have under `~/Desktop/DefendingODYSSEY`(the files from **Lab2**):
 ```bash
 gqrx &
 ```
+In another Terminal:
 
 - Get the path of the files:
 
@@ -40,26 +41,28 @@ cd ~/Desktop/DefendingODYSSEY
 
 ```bash
 realpath pass_clean.iq
-# /home/satuser/Desktop/BlueLab/pass_clean.iq
+# /home/satuser/Desktop/DefendingODYSSEY/pass_clean.iq
 ```
 
 ```bash
 realpath pass_jam_0dB.iq 
-# /home/satuser/Desktop/BlueLab/pass_jam_0dB.iq
+# /home/satuser/Desktop/DefendingODYSSEY/pass_jam_0dB.iq
 ```
 
 ```bash
 realpath pass_jam_-5dB.iq 
-# /home/satuser/Desktop/BlueLab/pass_jam_-5dB.iq
+# /home/satuser/Desktop/DefendingODYSSEY/pass_jam_-5dB.iq
 ```
 
 - If this window pops up, go to **File** -> **I/O Devices**
 
 2. Select **Complex Sampled (IQ) File** Device
 3. Input rate: **48000**
-4. Device string: `file=/home/satuser/Desktop/BlueLab/pass_clean.iq,freq=437.5e6,rate=48000,repeat=true,throttle=true`
+4. Device string: `file=/home/satuser/Desktop/DefendingODYSSEY/pass_clean.iq,freq=437.5e6,rate=48000,repeat=true,throttle=true`
 
 ![image](/Assets/BLab1/BLab1-1.png)
+
+<img width="693" height="473" alt="image" src="https://github.com/user-attachments/assets/5427ff9e-65ee-4651-920d-3b7b048d1f25" />
 
 - Click **Ok**
 
