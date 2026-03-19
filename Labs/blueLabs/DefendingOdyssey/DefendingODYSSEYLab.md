@@ -239,10 +239,10 @@ sudo -E wireshark &
 1. Trigger replay (from a terminal):
 
 ```bash
-seq 1 500 | xargs -I{} -P 20 sh -c \
- 'curl -s -X POST http://localhost:5000/ingest \
+seq 1 200 | xargs -I{} -P 50 sh -c \
+ 'curl -s -o /dev/null -X POST http://localhost/ingest \
    -H "Content-Type: application/json" \
-   --data-binary @stale.json'
+   --data "{\"test\":{}}"' 
 ```
 
 2. In Wireshark:
