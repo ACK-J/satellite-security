@@ -85,8 +85,8 @@ ls -lah output_clean
 
 Repeat **Part A** using:
 
-- IQ file: `pass_replay.iq`
-- Output: `output_replay`
+- IQ file: `/home/ubuntu/Desktop/SatDumpLab/pass_replay.iq`
+- Output: `/home/ubuntu/Desktop/SatDumpLab/output_replay/`
 
 Verify:
 
