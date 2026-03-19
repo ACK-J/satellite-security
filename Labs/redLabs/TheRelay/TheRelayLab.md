@@ -163,7 +163,7 @@ Send the two frames (AUTH followed by EXEC) to the emulator. Pace them at ~0.8 s
 python3 tools/replay.py --kiss assets/captured_kiss.hex --host 127.0.0.1 --port 52001 --pace 0.8
 ```
 **What happens:**
-- Emulator logs **AUTH OK**, then **EXEC ACCEPTED → mode=OP owned=true**.
+- Emulator logs **AUTH OK**, then **EXEC ACCEPTED -> mode=OP owned=true**.
 - No crypto broken: we simply **replayed** previously valid traffic lacking freshness binding.
 
 Verify impact:
@@ -346,7 +346,7 @@ Then replay the freshly crafted frames:
 python3 tools/replay.py --kiss nonce_then_auth.hex --host 127.0.0.1 --port 52001 --pace 0.8
 ```
 
-Expected emulator log: `AUTH OK → EXEC ACCEPTED → mode=OP`
+Expected emulator log: `AUTH OK -> EXEC ACCEPTED -> mode=OP`
 
 Now try replaying the **original** stale capture:
 
