@@ -130,7 +130,7 @@ print(propagator.time)   # epoch parsed from the TLE
 >[!NOTE]
 > You don't have to run these python scripts necessarily, we are using them as examples to understand the logic behind **Ephemerista**
 
-You should always inspect the epoch before performing calculations — `propagator.time` exposes the TLE epoch directly.
+You should always inspect the epoch before performing calculations - `propagator.time` exposes the TLE epoch directly.
 
 ---
 
@@ -200,8 +200,8 @@ Sanity checks like this are simple but effective for catching corrupted or stale
 
 Ephemerista supports multiple coordinate frames, commonly:
 
-- **ECI** (Earth-Centered Inertial) — inertial, fixed to stars
-- **ECEF** (Earth-Centered Earth-Fixed) — rotates with the Earth
+- **ECI** (Earth-Centered Inertial) - inertial, fixed to stars
+- **ECEF** (Earth-Centered Earth-Fixed) - rotates with the Earth
 
 The propagated trajectory carries its frame as an attribute:
 
@@ -227,7 +227,7 @@ print(state.position)
 print(state.velocity)
 ```
 
-**Frame mismatches** are a frequent source of subtle but serious errors — always verify `trajectory.frame` before mixing data from different sources.
+**Frame mismatches** are a frequent source of subtle but serious errors - always verify `trajectory.frame` before mixing data from different sources.
 
 ---
 
