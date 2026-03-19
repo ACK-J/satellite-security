@@ -34,16 +34,7 @@ docker compose version
 # Start
 ## Part A - Decode the Downlink
 
-1. **Open GNU Radio Companion (GRC)** and take the flow from [Lab 1](../Lab1/TheIntercepterLab.md) or build this flow:
-   ```
-   File Source (Complex, 48k, Repeat=Yes, file=assets/takeover_pass.iq)
-     → Throttle (48k)
-     → Quadrature Demod (gain ≈ 3.82)
-     → (optional LPF)
-     → Clock Recovery (omega=40.0, gain_mu ≈ 0.17)
-     → Binary Slicer
-     → File Sink (takeover.bits)
-   ```
+1. **Open GNU Radio Companion (GRC)** and take the flow from [Lab 1](../Lab1/TheIntercepterLab.md)
 
 2. Run it. This will output raw bits into `takeover.bits`.
 
