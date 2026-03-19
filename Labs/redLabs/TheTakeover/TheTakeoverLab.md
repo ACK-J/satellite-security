@@ -27,7 +27,7 @@ Auth rule (discover/confirm from pass): auth = sha1(str(epoch) + sat + "-BLUE")[
 
 1. **Open GNU Radio Companion (GRC)** and take the flow from [Lab 1](../TheIntercepter/TheIntercepterLab.md)
 
-2. Run it. This will output raw bits into `takeover.bits`.
+2. Run it. This will output raw bits into `takeover_pass_BPF.txt`.
 
 3. **Parse the frames** (reuse the Lab 1 parser).
    - Extract JSON payloads
