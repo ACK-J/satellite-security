@@ -203,7 +203,7 @@ inspectrum &
 1. Run groundstation:
 
 ```bash
-cd groundstation
+cd /home/ubuntu/Desktop/DefendingODYSSEY/groundstation
 ```
 
 ```bash
