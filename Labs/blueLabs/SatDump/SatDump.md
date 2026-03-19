@@ -55,6 +55,7 @@ satdump-ui
 
 <img width="999" height="635" alt="image" src="https://github.com/user-attachments/assets/fa04cdf8-0004-4adb-9faf-a7bcf8818a52" />
 
+Now, let's make the following changes:
 
 1. Pipepline: `Analog Demodulation`
 2. Input File: `/home/ubuntu/Desktop/SatDumpLab/pass_clean.iq`
