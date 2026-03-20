@@ -87,7 +87,7 @@ Watch for:
 
 ### Observations
 - Two strong vertical stripes indicating clear BFSK tones.
-- Noise floor is low, roughly –110 to –100 dBFS.
+- Noise floor is low, roughly –60 to –50 dBFS.
 - Signal stands well above the noise, giving high SNR.
 - Waterfall is stable and organized.
 - Symbol transitions look sharp and well-defined.
@@ -102,7 +102,7 @@ Watch for:
 
 ### Observations
 - BFSK tones are still visible but partially submerged.
-- Noise floor is raised significantly, around –90 to –80 dBFS.
+- Noise floor is raised significantly, around –40 to –35 dBFS.
 - Waterfall shows extra broadband noise.
 - Tone edges are less distinct.
 - SNR is reduced but not destroyed.
