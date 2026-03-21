@@ -46,7 +46,7 @@ tools/
 
 Import the synthetic TLE and look at when **DEMO‑SAT** would be visible from your location.
 
-- Start gpredict from a terminal for logs
+- Start gpredict from a terminal
 
 ```bash
 gpredict
@@ -95,7 +95,7 @@ python3 tools/packet_tools.py --show assets/captured_kiss.hex
 ![image](/Assets/RLab4/RLab4-5.png)
 
 
-**What you’ll see (explanation):**
+**What you’ll see:**
 - `timestamp`: embedded epoch the sender claimed when the frame was created
 - `counter`: a simplistic sequence value
 - `data_utf8`: command payload string
@@ -110,23 +110,26 @@ python3 tools/packet_tools.py --show assets/captured_kiss.hex
 The emulator listens for **KISS** frames on **TCP 52001** and exposes a JSON status at **http://127.0.0.1:8000/status** 
 It intentionally lacks freshness and replay protections by default
 
-```bash
-# run the emulator
-python3 emulators/groundstation_vuln.py
-```
-Keep it running in its terminal. Open a second terminal (or tab) for the replay steps, activate the venv again:
+- Run the emulator
 
 ```bash
-# in a new terminal tab, back in the lab folder
+python3 emulators/groundstation_vuln.py
+```
+
+Keep it running in its terminal. Open a second terminal (or tab) for the replay steps, activate the venv again:
+
+- In a new terminal tab, back in the lab folder
+
+```bash
 cd ~/Desktop/TheRelay
-source .venv/bin/activate
 ```
 
 Quick health check:
+
 ```bash
-# read status
 python3 tools/verify_success.py --url http://127.0.0.1:8000/status
 ```
+
 Expected JSON:
 ```json
 {
@@ -147,6 +150,7 @@ Send the two frames (AUTH followed by EXEC) to the emulator. Pace them at ~0.8 s
 ```bash
 python3 tools/replay.py --kiss assets/captured_kiss.hex --host 127.0.0.1 --port 52001 --pace 0.8
 ```
+
 **What happens:**
 - Emulator logs **AUTH OK**, then **EXEC ACCEPTED -> mode=OP owned=true**.
 - No crypto broken: we simply **replayed** previously valid traffic lacking freshness binding.
