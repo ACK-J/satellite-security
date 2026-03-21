@@ -2,9 +2,9 @@
 
 # Lab 4 - The Relay
 
-**Scenario:** Show how an attacker can **record** valid satellite command traffic and **replay** it later to a naive groundstation that lacks freshness checks. You’ll plan a pass, review/parse captured frames, then replay them into a local vulnerable groundstation emulator and measure impact. Finally, you’ll turn on defenses and re-test.
+**Scenario:** See how an attacker can **record** valid satellite command traffic and **replay** it later to a naive groundstation that lacks freshness checks. You’ll plan a pass, review/parse captured frames, then replay them into a local vulnerable groundstation emulator and measure impact. Finally, you’ll turn on defenses and re-test.
 
-**You’ll practice:** pass planning (gpredict), KISS framing basics, safe replay, and blue-team mitigations (timestamps, nonces, dedup)
+**You’ll practice:** pass planning (gpredict), temporal alignment & TLE integrity, KISS framing basics, safe replay, and blue-team mitigations (timestamps, nonces, dedup)
 
 ---
 
@@ -56,19 +56,56 @@ In gpredict:
 
 - **Edit -> Update TLE data from local files**: choose `assets/` and *open*
 
-![image](/Assets/RLab4/RLab4-1.png)
+<img width="320" height="160" alt="image" src="https://github.com/user-attachments/assets/464d589c-809d-4a5c-b9fc-79f58e685e64" />
+
+
 
 - **File -> New Module**: create a new module (“DEMO-Lab”)
 
-![image](/Assets/RLab4/RLab4-2.png)
+<img width="656" height="119" alt="image" src="https://github.com/user-attachments/assets/99f37bd5-6d7b-4bb9-bec0-64995b811b04" />
+
 
 - **Satellites -> Search for our DEMO-SAT**: pick `assets/DEMO-SAT.tle`
 
-![image](/Assets/RLab4/RLab4-3.png)
+<img width="738" height="384" alt="image" src="https://github.com/user-attachments/assets/a81fb622-e20f-4d6a-a06a-363ee7e89ce1" />
+
+
+**Technical Note:** In Satellite Security, "Freshness" applies to more than just passwords; it applies to orbital data. A TLE is only an approximation. 
+
+The SGP4 algorithm used by Gpredict loses accuracy at a rate of roughly 1–3 km per day. After several months, a satellite will be "predicted" thousands of kilometers away from its actual location. This is a critical lesson for attackers: you cannot intercept or spoof a signal if you don't have up-to-date orbital intelligence! 
+
+**The "Why":** To illustrate the effect of *TLE Drift*, the synthetic example refers to a specific satellite pass in September 01, 2025, at 14:43:00
+
+- Observe the current Gpredict data:
+ 
+ <img width="706" height="730" alt="image" src="https://github.com/user-attachments/assets/85f01a52-ad0d-4170-9c2a-3aae03c358d1" />
+
+- The current (2026) position for DEMO-SAT appears illogical, due to the *TLE Drift* effect. To see exactly what the operator saw during the original attack, we must align the simulation's clock with our "Forensic Evidence."
+
+**Temporal Alignment Configuration Steps:**
+- Open Time Controller : Select the date and time
+  
+<img width="633" height="422" alt="image" src="https://github.com/user-attachments/assets/25ac4885-2c7a-48c3-9b6e-daf7c895c252" />
+
+- Adjust the Time Controller: **Simulated -Real-Time -> Manual Control**
+  
+<img width="371" height="70" alt="image" src="https://github.com/user-attachments/assets/1417273f-ebac-41b5-acab-0d3dfeae7f57" />
+<br />
+<img width="371" height="70" alt="image" src="https://github.com/user-attachments/assets/d7af4e3f-bcb9-4d1f-96b7-743188462d5f" />
+
+- Select **September 01, 2025, 14:43:00**
+  
+<img width="373" height="247" alt="image" src="https://github.com/user-attachments/assets/3f0fe2da-eb57-4d9d-b287-3bc312407e4f" />
+
+>[!IMPORTANT]
+>In a real-world tactical scenario, orbital data (TLEs) must be used immediately following their release or capture. The extreme "drift" and map distortion observed in this lab are intentional, used here to demonstrate the impact of TLE Decay over several months.
+
+**Observe the Correction:** The satellite should now display a clean, circular footprint
+
 
 - Observe **AOS/LOS** and nominal UHF center frequency you’d monitor (synthetic example: 437.500 MHz)
 
-![image](/Assets/RLab4/RLab4-4.png)
+<img width="733" height="731" alt="image" src="https://github.com/user-attachments/assets/38859e4f-0359-4681-b074-93d37f81749b" />
 
 
 **Why:** See how real operators plan captures, we’ll still use a synthetic capture next
