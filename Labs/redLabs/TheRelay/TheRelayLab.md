@@ -73,6 +73,8 @@ In gpredict:
 
 **Why:** See how real operators plan captures, we’ll still use a synthetic capture next
 
+- Close **gpredict** and go back to the terminal
+
 ---
 
 ## Inspect the provided capture
@@ -84,12 +86,9 @@ This simulates “post‑demod” packets an attacker or operator might export
 >[!IMPORTANT]
 >Make sure you are at `~/Desktop/TheRelay/`
 
-```bash
-cd ~/Desktop/TheRelay
-```
+- Show frames and parsed fields
 
 ```bash
-# Show frames and parsed fields
 python3 tools/packet_tools.py --show assets/captured_kiss.hex
 ```
 
