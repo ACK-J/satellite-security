@@ -10,28 +10,11 @@
 
 ## Setup 
 
+- Enter the lab folder
+
 ```bash
-# enter the lab folder
 cd ~/Desktop/TheRelay
 ```
-
-```bash
-# Python virtual env for reproducibility
-python3 -m venv .venv
-```
-
-```bash
-# activate it
-source .venv/bin/activate
-```
-
-```bash
-# upgrade pip and install our few dependencies
-pip install --upgrade pip
-pip install pycrc
-```
-
-**Why:** The emulator and helpers are plain Python, `pycrc` is only used in one optional check
 
 Find the documentation for [gpredict here](/Tools%20and%20Frameworks/gpredict.md)
 
@@ -63,11 +46,14 @@ tools/
 
 Import the synthetic TLE and look at when **DEMO‑SAT** would be visible from your location.
 
+- Start gpredict from a terminal for logs
+
 ```bash
-# Start gpredict from a terminal for logs (optional)
 gpredict
 ```
+
 In gpredict:
+
 - **Edit -> Update TLE data from local files**: choose `assets/` and *open*
 
 ![image](/Assets/RLab4/RLab4-1.png)
