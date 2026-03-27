@@ -121,7 +121,7 @@ diff -u clean.hashes.txt replay.hashes.txt
 
 - BOOM! The hashes are different, the replay has been detected!
 
-## Prove Replay With Spectograms
+## Prove Replay With Spectrograms
 
 ```bash
 sudo apt install sox -y
@@ -143,7 +143,7 @@ xdg-open results/clean.png
 xdg-open results/replay.png
 ```
 
-- Put the newly opened **Spectograms** side by side
+- Put the newly opened **Spectrograms** side by side
 
 <img width="1920" height="908" alt="image" src="https://github.com/user-attachments/assets/55d48b78-7000-41ed-ad9e-69c99579ea2f" />
 
